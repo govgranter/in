@@ -23,30 +23,74 @@ const TELEGRAM_BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
 const TELEGRAM_CHAT_ID = process.env.TELEGRAM_CHAT_ID;
 const TELEGRAM_API = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}`;
 
-// API endpoint to send email
-app.post('/api/data', (req, res) => {
-  try {
-    // Extract the message from FormData
-    const { message } = req.body;
-
-    if (!message) {
-      return res.status(400).json({ message: 'No message provided' });
+// Function to send message to Telegram
+async function sendToTelegram(message) {
+    try {
+        const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
+        
+        const response = await axios.post(url, {
+            chat_id: TELEGRAM_CHAT_ID,
+            text: message,
+            parse_mode: 'HTML'
+        });
+        
+        return { success: true, data: response.data };
+    } catch (error) {
+        console.error('Error sending to Telegram:', error.response?.data || error.message);
+        return { success: false, error: error.response?.data || error.message };
     }
+}
 
-    // Send the message to Telegram
-    await axios.post(`${TELEGRAM_API}/sendMessage`, {
-      chat_id: TELEGRAM_CHAT_ID,
-      text: message,
-      parse_mode: 'Markdown', // Enable Markdown formatting for bold text, etc.
-    });
+// Route to handle form submission
+app.post('/send-to-telegram', async (req, res) => {
+    try {
+        const { name, email, message } = req.body;
+        
+        // Validate required fields
+        if (!name || !email || !message) {
+            return res.status(400).json({
+                error: 'All fields are required'
+            });
+        }
+        
+        // Format message for Telegram
+        const telegramMessage = `
+📧 <b>New Form Submission</b>
 
-    res.json({ message: 'Message sent to Telegram successfully' });
-  } catch (error) {
-    console.error('Error sending to Telegram:', error.message);
-    res.status(500).json({ message: 'Failed to send message to Telegram' });
-  }
+👤 <b>Name:</b> ${name}
+📧 <b>Email:</b> ${email}
+
+
+⏰ <i>Received at: ${new Date().toLocaleString()}</i>
+        `.trim();
+        
+        // Send to Telegram
+        const result = await sendToTelegram(telegramMessage);
+        
+        if (result.success) {
+            res.json({
+                success: true,
+                message: 'Message sent to Telegram successfully'
+            });
+        } else {
+            res.status(500).json({
+                error: 'Failed to send message to Telegram',
+                details: result.error
+            });
+        }
+        
+    } catch (error) {
+        console.error('Server error:', error);
+        res.status(500).json({
+            error: 'Internal server error'
+        });
+    }
 });
 
+// Health check route
+app.get('/', (req, res) => {
+    res.json({ message: 'Telegram Bot Server is running!' });
+});
 
   
 // Start server
