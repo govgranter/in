@@ -448,7 +448,7 @@ closeAdButton.addEventListener("click", slideOutAd);
 
 			try {
                 // Use relative path instead of localhost
-                const response = await fetch('/send-to-telegram', {
+                const response = await fetch(url, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
