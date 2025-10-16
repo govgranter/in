@@ -20,8 +20,7 @@ app.get('/api/data', (req, res) => {
 // API endpoint to send email
 app.post('/api/data', (req, res) => {
   const { to, name, maintext, subject, tag } = req.body;
-
-
+};
   
 // Start server
 app.listen(PORT, () => {
