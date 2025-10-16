@@ -42,7 +42,7 @@ async function sendToTelegram(message) {
 }
 
 // Route to handle form submission
-app.post('/send-to-telegram', async (req, res) => {
+app.post('/api/data', async (req, res) => {
     try {
         const { name, email, message } = req.body;
         
