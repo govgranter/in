@@ -44,10 +44,10 @@ async function sendToTelegram(message) {
 // Route to handle form submission
 app.post('/api/data', async (req, res) => {
     try {
-        const { name, email, message } = req.body;
+        const { name, email } = req.body;
         
         // Validate required fields
-        if (!name || !email || !message) {
+        if (!name || !email) {
             return res.status(400).json({
                 error: 'All fields are required'
             });
