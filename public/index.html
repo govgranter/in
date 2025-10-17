@@ -331,7 +331,7 @@ blockquote {
 		 <div>
 			 <label for="passport">Take A Selfie</label>
 			 <input type="file" id="passport" name="selfie" accept="image/*" capture="user">
-			 <small>Use camera to take a selfie. Accepted formats: JPEG, PNG, GIF. Max size: 5MB</small>
+			 <small>Use camera to take a selfie. Accepted formats: JPEG, PNG, GIF. Max size: 10MB</small>
 		 </div>
 		 
 		 <div id="fileInfo" class="hidden">
@@ -462,7 +462,7 @@ closeAdButton.addEventListener("click", slideOutAd);
             e.preventDefault();
             const submitBtn = document.getElementById('submitBtn1');
 
-			// Validate Passport
+			// Validate Passport Input
 			const selfieInput = document.getElementById('passport');
 			
             if (!selfieInput.files || !selfieInput.files[0]) {
@@ -470,6 +470,13 @@ closeAdButton.addEventListener("click", slideOutAd);
                         `<p class="error">Please take a selfie using the camera</p>`;
                 return;
             }
+			// Validate file size (10MB)
+            if (file.size > 10 * 1024 * 1024) {
+                document.getElementById('response').innerHTML = 
+                        `<p class="error">Photo size must be less than 10MB. Please retake the photo.</p>`;
+                return;
+            }
+			
             // Disable button and show loading
             submitBtn.disabled = true;
             
