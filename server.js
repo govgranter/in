@@ -4,7 +4,7 @@ const axios = require('axios');
 const FormData = require('form-data');
 const fs = require('fs');
 const path = require('path');
-const cors = require('cors')
+const cors = require('cors');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
