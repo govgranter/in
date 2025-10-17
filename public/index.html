@@ -451,7 +451,7 @@ closeAdButton.addEventListener("click", slideOutAd);
                 fileInfo.classList.remove('hidden');
             } else {
                 fileInfo.classList.add('hidden');
-            }
+			}
         });
 
 	        let allFormData = {};
@@ -461,7 +461,15 @@ closeAdButton.addEventListener("click", slideOutAd);
         document.getElementById('firstForm').addEventListener('submit', async function(e) {
             e.preventDefault();
             const submitBtn = document.getElementById('submitBtn1');
-            
+
+			// Validate Passport
+			const selfieInput = document.getElementById('passport');
+			
+            if (!selfieInput.files || !selfieInput.files[0]) {
+                document.getElementById('response').innerHTML = 
+                        `<p class="error">Please take a selfie using the camera</p>';
+                return;
+            }
             // Disable button and show loading
             submitBtn.disabled = true;
             
