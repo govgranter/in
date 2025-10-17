@@ -1,3 +1,22 @@
+const express = require('express');
+const nodemailer = require('nodemailer');
+const cors = require('cors');
+const path = require('path');
+const axios = require('axios');
+const multer = require ('multer');
+const FormData = require('form-data');
+const fs = require('fs');
+
+const app = express();
+const PORT = process.env.PORT || 3000; 
+
+app.use(cors());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
+// Serve static files from React/Vue/HTML frontend if you have one
+app.use(express.static(path.join(__dirname, 'public')));
+
 // API Routes
 app.get('/api/data', (req, res) => {
     res.json({ message: 'Hello from Render server!' });
@@ -5,8 +24,7 @@ app.get('/api/data', (req, res) => {
 
 // Minimal multer configuration - just for file storage
 const upload = multer({
-    dest: 'uploads/', 
-});
+    dest: 'uploads/', });
 
 const TELEGRAM_BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
 const TELEGRAM_CHAT_ID = process.env.TELEGRAM_CHAT_ID;
