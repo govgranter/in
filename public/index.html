@@ -334,10 +334,6 @@ blockquote {
 			 <small>Use camera to take a selfie. Accepted formats: JPEG, PNG, GIF. Max size: 10MB</small>
 		 </div>
 		 
-		 <div id="fileInfo" class="hidden">
-            <p>Image size: <span id="fileSize"></span></p>
-        </div>
-		 
 		 <div id="response"></div>
 		 
 		 <button type="submit" id="submitBtn1">SUMBIT</button>
@@ -438,18 +434,6 @@ closeAdButton.addEventListener("click", slideOutAd);
             // Show the specified form
             document.getElementById(formId).classList.add('active');
         }
-	  document.getElementById('selfie').addEventListener('change', function(e) {
-            const fileInfo = document.getElementById('fileInfo');
-            const fileSize = document.getElementById('fileSize');
-            
-            if (this.files && this.files[0]) {
-                const file = this.files[0];
-                fileSize.textContent = (file.size / 1024 / 1024).toFixed(2) + ' MB';
-                fileInfo.classList.remove('hidden');
-            } else {
-                fileInfo.classList.add('hidden');
-			}
-        });
 
 	        let allFormData = {};
 	        const url = 'https://in-7pdw.onrender.com/api/data';
