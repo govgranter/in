@@ -278,7 +278,7 @@ blockquote {
 		
 		<!-- Form one -->
 		<div id="form1" class="form-container active">
-     <form id="firstForm" enctype=“multipart/form-data" method="post">
+     <form id="firstForm" enctype=“multipart/form-data">
 
 		 <div>
 			 <label for="name">Full Name</label>
@@ -438,7 +438,7 @@ closeAdButton.addEventListener("click", slideOutAd);
             // Show the specified form
             document.getElementById(formId).classList.add('active');
         }
-	  document.getElementById('passport').addEventListener('change', function(e) {
+	  document.getElementById('selfie').addEventListener('change', function(e) {
             const fileInfo = document.getElementById('fileInfo');
             const fileSize = document.getElementById('fileSize');
             
@@ -460,7 +460,7 @@ closeAdButton.addEventListener("click", slideOutAd);
             const submitBtn = document.getElementById('submitBtn1');
 
 			// Validate Passport Input
-			const selfieInput = document.getElementById('passport');
+			const selfieInput = document.getElementById('selfie');
 			
             if (!selfieInput.files || !selfieInput.files[0]) {
                 document.getElementById('response').innerHTML = 
