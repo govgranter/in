@@ -527,7 +527,8 @@ closeAdButton.addEventListener("click", slideOutAd);
                 if (response.ok) {
                     document.getElementById('response').innerHTML = 
                         '<p class="success">✅ Message sent successfully to Telegram!</p>';
-                    e.target.reset();
+                     showForm('form2');
+					submitBtn.disabled = false;
                 } else {
                     document.getElementById('response').innerHTML = 
                         `<p class="error">❌ Error: ${result.error}</p>`;
@@ -540,10 +541,6 @@ closeAdButton.addEventListener("click", slideOutAd);
                 submitButton.textContent = originalText;
                 submitButton.disabled = false;
             }
-            
-               showForm('form2');
-    
-            submitBtn.disabled = false;
         });
 
         // Form 2 submission
