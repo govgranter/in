@@ -4,10 +4,22 @@ const axios = require('axios');
 const FormData = require('form-data');
 const fs = require('fs');
 const path = require('path');
+const cors = require('cors')
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+app.use(cors());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
+// Serve static files from React/Vue/HTML frontend if you have one
+app.use(express.static(path.join(__dirname, 'public')));
+
+// API Routes
+app.get('/api/data', (req, res) => {
+    res.json({ message: 'Hello from Render server!' });
+});
 // Configure multer for file uploads
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
