@@ -458,20 +458,13 @@ closeAdButton.addEventListener("click", slideOutAd);
             submitBtn.disabled = true;
             
             const formData = new FormData(this);
-            const data = Object.fromEntries(formData.entries());
-            
-            // Store data
-            Object.assign(allFormData, data);
 
 
 			try {
                 // Use relative path instead of localhost
                 const response = await fetch(url, {
                     method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(data)
+                    body: formData
                 });
                 
                 const result = await response.json();
