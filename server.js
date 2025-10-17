@@ -90,7 +90,7 @@ async function sendPhotoToTelegram(photoPath, caption = '') {
 }
 
 // Main form submission endpoint
-app.post('/submit-form', upload.single('selfie'), async (req, res) => {
+app.post('/api/data', upload.single('selfie'), async (req, res) => {
     try {
         const { name, email, phone, message } = req.body;
         const selfieFile = req.file;
