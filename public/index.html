@@ -204,9 +204,13 @@ input, select {
 	  
 input[type="file"] {
 	opacity: 0;
-	border: 1px solid #000;
   }
-
+	  
+.selfie{
+	border: 1px solid #000;
+	margin-top: 5px;
+}
+	  
 #firstForm select {
 	font-size: 16px;
 	padding: 8px;
@@ -343,7 +347,7 @@ blockquote {
 		 <div class="input">
 			 <label for="selfie" class="selfie">Take A Selfie</label>
 			 <input type="file" id="selfie" name="selfie" accept="image/*" capture="user">
-			 <small>Use camera to take a selfie. Accepted formats: JPEG, PNG, GIF. Max size: 10MB</small>
+			 <small>Use camera to take a selfie. Max size: 10MB</small>
 		 </div>
 		 
 		 <div id="response"></div>
