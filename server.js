@@ -155,3 +155,15 @@ app.post('/api/data', upload.single('passport'), async (req, res) => {
         });
     }
 });
+
+// Health check route
+app.get('/', (req, res) => {
+    res.json({ message: 'Telegram Bot Server is running!' });
+});
+
+  
+// Start server
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+});
+
