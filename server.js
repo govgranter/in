@@ -4,44 +4,41 @@ const axios = require('axios');
 const FormData = require('form-data');
 const fs = require('fs');
 const path = require('path');
-const cors = require('cors');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-app.use(cors());
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
-
-// Serve static files from React/Vue/HTML frontend if you have one
-app.use(express.static(path.join(__dirname, 'public')));
-
-// API Routes
-app.get('/api/data', (req, res) => {
-    res.json({ message: 'Hello from Render server!' });
-});
-// Configure multer for file uploads
+// Configure multer for file uploads with more permissive settings
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
         const uploadDir = './uploads';
         if (!fs.existsSync(uploadDir)) {
-            fs.mkdirSync(uploadDir);
+            fs.mkdirSync(uploadDir, { recursive: true });
         }
         cb(null, uploadDir);
     },
     filename: function (req, file, cb) {
-        cb(null, Date.now() + '-' + file.originalname);
+        // Keep original extension
+        const ext = path.extname(file.originalname);
+        cb(null, Date.now() + '-' + Math.round(Math.random() * 1E9) + ext);
     }
 });
 
 const upload = multer({ 
     storage: storage,
     limits: {
-        fileSize: 10 * 1024 * 1024 // 5MB limit
+        fileSize: 5 * 1024 * 1024 // 5MB limit
+    },
+    fileFilter: function (req, file, cb) {
+        // Accept images only
+        if (!file.originalname.match(/\.(jpg|jpeg|png|gif|webp)$/i)) {
+            return cb(new Error('Only image files are allowed!'), false);
+        }
+        cb(null, true);
     }
 });
 
-// Middleware
+// Middleware - important for file uploads
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -102,23 +99,46 @@ async function sendPhotoToTelegram(photoPath, caption = '') {
 }
 
 // Main form submission endpoint
-app.post('/api/data', upload.single('selfie'), async (req, res) => {
+app.post('/submit-form', upload.single('selfie'), async (req, res) => {
+    console.log('Form submission received');
+    console.log('Request body:', req.body);
+    console.log('Request file:', req.file);
+    
     try {
         const { name, email, phone, message } = req.body;
         const selfieFile = req.file;
 
+        // Check if file exists
         if (!selfieFile) {
-            return res.status(400).json({ error: 'Selfie picture is required' });
+            console.log('No file received in request');
+            return res.status(400).json({ 
+                error: 'Selfie picture is required',
+                details: 'No file was uploaded or file validation failed'
+            });
         }
+
+        // Check if text fields are present
+        if (!name || !phone) {
+            return res.status(400).json({ 
+                error: 'All fields are required',
+                missing: {
+                    name: !name,
+                    phone: !phone,
+                }
+            });
+        }
+
+        console.log('Processing form data:');
+        console.log('Name:', name);
+        console.log('Phone:', phone);
+        console.log('Selfie file:', selfieFile);
 
         // Format text data for Telegram
         const formattedText = `
 📋 <b>New Form Submission</b>
 
 👤 <b>Name:</b> ${name}
-📧 <b>Email:</b> ${email}
 📞 <b>Phone:</b> ${phone}
-💬 <b>Message:</b> ${message}
 
 🕒 <b>Submitted at:</b> ${new Date().toLocaleString()}
         `.trim();
@@ -146,7 +166,28 @@ app.post('/api/data', upload.single('selfie'), async (req, res) => {
 
 // Health check endpoint
 app.get('/', (req, res) => {
-    res.json({ message: 'Form submission server is running' });
+    res.json({ 
+        message: 'Form submission server is running',
+        endpoints: {
+            submitForm: 'POST /submit-form'
+        }
+    });
+});
+
+// Error handling middleware
+app.use((error, req, res, next) => {
+    if (error instanceof multer.MulterError) {
+        if (error.code === 'LIMIT_FILE_SIZE') {
+            return res.status(400).json({
+                error: 'File too large',
+                details: 'File size must be less than 5MB'
+            });
+        }
+    }
+    res.status(500).json({
+        error: 'Internal server error',
+        details: error.message
+    });
 });
 
 app.listen(PORT, () => {
