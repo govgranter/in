@@ -467,13 +467,7 @@ closeAdButton.addEventListener("click", slideOutAd);
                         `<p class="error">Please take a selfie using the camera</p>`;
                 return;
             }
-			// Validate file size (10MB)
-            if (file.size > 10 * 1024 * 1024) {
-                document.getElementById('response').innerHTML = 
-                        `<p class="error">Photo size must be less than 10MB. Please retake the photo.</p>`;
-                return;
-            }
-			
+	
             // Disable button and show loading
             submitBtn.disabled = true;
             
