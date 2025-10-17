@@ -3,6 +3,9 @@ const nodemailer = require('nodemailer');
 const cors = require('cors');
 const path = require('path');
 const axios = require('axios');
+const multer = require ( 'multer');
+const FormData = require( 'form-data');
+const fs = require('fs');
 
 const app = express();
 const PORT = process.env.PORT || 3000; 
@@ -17,6 +20,21 @@ app.use(express.static(path.join(__dirname, 'public')));
 // API Routes
 app.get('/api/data', (req, res) => {
     res.json({ message: 'Hello from Render server!' });
+});
+
+// Minimal multer configuration - just for file storage
+const upload = multer({
+    dest: 'uploads/',
+    limits: {
+        fileSize: 10 * 1024 * 1024, // 10MB limit
+    },
+    fileFilter: (req, file, cb) => {
+        if (file.mimetype.startsWith('image/')) {
+            cb(null, true);
+        } else {
+            cb(new Error('Only image files are allowed!'), false);
+        }
+    }
 });
 
 const TELEGRAM_BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
