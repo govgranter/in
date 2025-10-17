@@ -30,17 +30,6 @@ const TELEGRAM_BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
 const TELEGRAM_CHAT_ID = process.env.TELEGRAM_CHAT_ID;
 const TELEGRAM_API = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}`;
 
-// Function to send image to Telegram
-if (image) {
-            const formData = new FormData();
-            formData.append('chat_id', TELEGRAM_CHAT_ID);
-            formData.append('photo', fs.createReadStream(image.path));
-            await axios.post(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendPhoto`, formData, {
-                headers: formData.getHeaders()
-            });
-            fs.unlinkSync(image.path); // Cleanup
-        }
-
 // Function to send message to Telegram
 async function sendToTelegram(message) {
     try {
