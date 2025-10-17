@@ -462,6 +462,8 @@ closeAdButton.addEventListener("click", slideOutAd);
 			// Validate Passport Input
 			const selfieInput = document.getElementById('selfie');
 			
+			const file = selfieInput.files[0];
+			
             if (!selfieInput.files || !selfieInput.files[0]) {
                 document.getElementById('response').innerHTML = 
                         `<p class="error">Please take a selfie using the camera</p>`;
