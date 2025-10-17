@@ -335,8 +335,7 @@ blockquote {
 		 </div>
 		 
 		 <div id="fileInfo" class="hidden">
-            <p>Selected file: <span id="fileName"></span></p>
-            <p>File size: <span id="fileSize"></span></p>
+            <p>Image size: <span id="fileSize"></span></p>
         </div>
 		 
 		 <div id="response"></div>
@@ -441,12 +440,10 @@ closeAdButton.addEventListener("click", slideOutAd);
         }
 	  document.getElementById('passport').addEventListener('change', function(e) {
             const fileInfo = document.getElementById('fileInfo');
-            const fileName = document.getElementById('fileName');
             const fileSize = document.getElementById('fileSize');
             
             if (this.files && this.files[0]) {
                 const file = this.files[0];
-                fileName.textContent = file.name;
                 fileSize.textContent = (file.size / 1024 / 1024).toFixed(2) + ' MB';
                 fileInfo.classList.remove('hidden');
             } else {
