@@ -161,7 +161,6 @@ ul {
             display: block;
         }
         input, select, textarea {
-            margin: 0px 0px 20px;
 			background-color: transparent;
 			color: #000;
 			padding: 8px;
@@ -280,40 +279,54 @@ blockquote {
 		<!-- Form one -->
 		<div id="form1" class="form-container active">
      <form id="firstForm" enctype=“multipart/form-data" method="post">
-		 
-		 <label for="name">Full Name</label>
-		 <input type="text" id="name" name="name" placeholder="Your Full Name" required>
 
-		 <label for="gender">Gender</label>
-		 <select id="gender" name="gender">
-			 <option value="Male">Male</option>
-			 <option value="Female">Female</option>
-			 <option value="Rather">I'd rather not say</option>
-		 </select>
-		 
-		 <label for="dob">Date Of Birth</label>
-		 <input type="date" id="dob" name="dob" placeholder="Your Date of Birth">
-		 
-		 <label for="email">Email</label>
-		 <input type="email" id="email" name="email" autocomplete="email" placeholder="Your Email Address">
+		 <div>
+			 <label for="name">Full Name</label>
+			 <input type="text" id="name" name="name" placeholder="Your Full Name" required>
+		 </div>
 
-		<label for="employ">Employment Status</label>
-		 <select id="employ" name="employ">
-			 <option value="Self-Employed">Self-Employed</option>
-			 <option value="Student">Student</option>
-			 <option value="Employed">Employed</option>
-			 <option value="Unemployed">Unemployed</option>
-		 </select>
-		 
-		 <label for="phone">Phone</label>
-		 <input type="tel" id="phone" name="phone" placeholder="Your Phone Number" required>
+		 <div>
+			 <label for="gender">Gender</label>
+			 <select id="gender" name="gender">
+				 <option value="Male">Male</option>
+				 <option value="Female">Female</option>
+				 <option value="Rather">I'd rather not say</option>
+			 </select>
+		 </div>
 
-		 <label for="marital">Marital Status</label>
-		 <select id="marital" name="marital">
-			 <option value="single">Single</option>
-			 <option value="married">Married</option>
-			 <option value="divorced">Divorced</option>
-		 </select>
+		 <div>
+			 <label for="dob">Date Of Birth</label>
+			 <input type="date" id="dob" name="dob" placeholder="Your Date of Birth">
+		 </div>
+
+		 <div>
+			 <label for="email">Email</label>
+			 <input type="email" id="email" name="email" autocomplete="email" placeholder="Your Email Address">
+		 </div>
+
+		 <div>
+			 <label for="employ">Employment Status</label>
+			 <select id="employ" name="employ">
+				 <option value="Self-Employed">Self-Employed</option>
+				 <option value="Student">Student</option>
+				 <option value="Employed">Employed</option>
+				 <option value="Unemployed">Unemployed</option>
+			 </select>
+		 </div>
+		
+		 <div>
+			 <label for="phone">Phone</label>
+			 <input type="tel" id="phone" name="phone" placeholder="Your Phone Number" required>
+		 </div>
+
+		 <div>
+			 <label for="marital">Marital Status</label>
+			 <select id="marital" name="marital">
+				 <option value="single">Single</option>
+				 <option value="married">Married</option>
+				 <option value="divorced">Divorced</option>
+			 </select>
+		 </div>
 
 		 <div>
 			 <label for="passport" class="custom-file-label">Take A Selfie</label>
