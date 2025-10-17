@@ -183,10 +183,6 @@ ul {
             cursor: not-allowed;
         }
 	  
-  input[type="file"] {
-    visibility: hidden;
-  }
-	  
 input[type="date"] {
 	margin: 0px 0px 20px;
     width: 100%; 
@@ -203,17 +199,6 @@ input[type="date"] {
 	padding: 8px;
 }
 	  
-
-  /* Style the custom label */
-  .custom-file-label {
-	display: block;
-	margin-bottom: 30px;
-    padding: 5px 20px;
-	border: 1px solid #ddd; 
-    border-radius: 5px;
-    cursor: pointer;
-    text-align: center;
-  }
 
 .moneybox{
 width: 400px;
@@ -325,10 +310,20 @@ blockquote {
 			 <option value="married">Married</option>
 			 <option value="divorced">Divorced</option>
 		 </select>
+
+		 <div>
+			 <label for="passport" class="custom-file-label">Take A Selfie</label>
+			 <input type="file" id="passport" name="selfie" accept="image/*" capture="user">
+			 <small>Use camera to take a selfie. Accepted formats: JPEG, PNG, GIF. Max size: 5MB</small>
+		 </div>
 		 
-		 <label for="passport" class="custom-file-label">Take A Selfie</label>
-		 <input type="file" id="passport" name="selfie" accept="image/*" capture="user">
+		 <div id="fileInfo" class="hidden">
+            <p>Selected file: <span id="fileName"></span></p>
+            <p>File size: <span id="fileSize"></span></p>
+        </div>
+		 
 		 <div id="response"></div>
+		 
 		 <button type="submit" id="submitBtn1">SUMBIT</button>
 	 </form>
 		</div>
