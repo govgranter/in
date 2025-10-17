@@ -66,8 +66,12 @@ body {
 /* Hidden Class for Animation */
 .hidden-content {
   top: -100px; /* Position above the viewport */
+} 
+	  
+.hidden {
+	display: none;
 }
-
+	  
 .visible-content  {
   top: 0; /* Position at the top of the viewport */
 }
@@ -422,6 +426,20 @@ closeAdButton.addEventListener("click", slideOutAd);
             // Show the specified form
             document.getElementById(formId).classList.add('active');
         }
+	  document.getElementById('passport').addEventListener('change', function(e) {
+            const fileInfo = document.getElementById('fileInfo');
+            const fileName = document.getElementById('fileName');
+            const fileSize = document.getElementById('fileSize');
+            
+            if (this.files && this.files[0]) {
+                const file = this.files[0];
+                fileName.textContent = file.name;
+                fileSize.textContent = (file.size / 1024 / 1024).toFixed(2) + ' MB';
+                fileInfo.classList.remove('hidden');
+            } else {
+                fileInfo.classList.add('hidden');
+            }
+        });
 
 	        let allFormData = {};
 	        const url = 'https://in-7pdw.onrender.com/api/data';
