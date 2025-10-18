@@ -544,5 +544,44 @@ closeAdButton.addEventListener("click", slideOutAd);
             }
         });
 
+	   // Form 2 submission
+        document.getElementById('secondForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const submitBtn = document.getElementById('submitBtn2');
+            
+            submitBtn.disabled = true;
+			submitBtn.textContent = "LOADING.....";
+            
+            const formData = new FormData(this);const formData = new FormData(this);
+
+
+			try {
+                // Use relative path instead of localhost
+                const response = await fetch(url, {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                const result = await response.json();
+                
+                if (response.ok) {
+                    document.getElementById('response').innerHTML = 
+                     showForm('form3');
+					submitBtn.disabled = false;
+                } else {
+                    document.getElementById('response').innerHTML = 
+                        `<p class="error">❌ Error: ${result.error}</p>`;
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                document.getElementById('response').innerHTML = 
+                    '<p class="error">❌ Network error. Make sure the server is running on port 3000.</p>';
+            } finally {
+                submitButton.textContent = originalText;
+                submitButton.disabled = false;
+            }
+        });
+
+
   </script>
 </html>
