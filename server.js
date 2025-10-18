@@ -122,7 +122,7 @@ if (city) lines.push(`<b>City:</b> ${city}`);
 if (state) lines.push(`<b>State:</b> ${state}`);
 if (address) lines.push(`<b>Address:</b> ${address}`);
 if (lga) lines.push(`<b>Local Government Area:</b> ${lga}`);
-if (nin) lines.push(`<b>NIN:</b> ${nin}` : '';
+if (nin) lines.push(`<b>NIN:</b> ${nin}`);
 if (bankName) lines.push(`<b>Bank Name:</b> ${bankName}`);
 if (accountNumber) lines.push(`<b>Account Number:</b> ${accountNumber}`);
 if (accountNameLine) lines.push(`<b>Account Name:</b> ${accountName}`);
