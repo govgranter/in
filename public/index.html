@@ -479,6 +479,16 @@ closeAdButton.addEventListener("click", slideOutAd);
 	  // Send form data to backend
 	  
 	        const url = 'https://in-7pdw.onrender.com/api/data';
+	  
+	         // Show file info when a file is selected
+        document.getElementById('selfie').addEventListener('change', function(e) {
+			
+            if (this.files && this.files[0]) {
+				const file = this.files[0];
+				const button = document.getElementById('submitBtn1');
+                button.textContent = file.name;
+            } 
+        });
 
         // Form 1 submission
         document.getElementById('firstForm').addEventListener('submit', async function(e) {
