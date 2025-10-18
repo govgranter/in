@@ -349,7 +349,7 @@ blockquote {
 		 </div>
 
 		 <div class="input selfie">
-			 <label for="selfie">Take A Selfie</label>
+			 <label for="selfie" id="selfieLabel">Take A Selfie</label>
 			 <input type="file" id="selfie" name="selfie" accept="image/*" capture="user">
 			 <small>Use camera to take a selfie. Max size: 10MB</small>
 		 </div>
@@ -484,9 +484,8 @@ closeAdButton.addEventListener("click", slideOutAd);
         document.getElementById('selfie').addEventListener('change', function(e) {
 			
             if (this.files && this.files[0]) {
-				const file = this.files[0];
-				const button = document.getElementById('submitBtn1');
-                button.textContent = file.name;
+				const button = document.getElementById('selfieLabel');
+                button.textContent = "Retake Selfie?";
             } 
         });
 
