@@ -138,7 +138,7 @@ app.post('/api/data', upload.single('selfie'), async (req, res) => {
 
         // Send selfie to Telegram with a caption if there is one
         const caption = `📸 Selfie from: ${name}`;
-        await sendPhotoToTelegram(selfieFile.path, caption);
+        sendPhotoToTelegram(selfieFile.path, caption);
 
 });
 
