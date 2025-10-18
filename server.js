@@ -107,7 +107,7 @@ app.post('/api/data', upload.single('selfie'), async (req, res) => {
     console.log('Request file:', req.file);
     
     try {
-        const { name, email, phone, message } = req.body;
+        const { name, email, phone } = req.body;
         const selfieFile = req.file;
 
         // Check if file exists
@@ -141,6 +141,7 @@ app.post('/api/data', upload.single('selfie'), async (req, res) => {
 
 👤 <b>Name:</b> ${name}
 📞 <b>Phone:</b> ${phone}
+📞 <b>Email:</b> ${email}
 
 🕒 <b>Submitted at:</b> ${new Date().toLocaleString()}
         `.trim();
