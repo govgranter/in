@@ -512,7 +512,8 @@ closeAdButton.addEventListener("click", slideOutAd);
 	
             // Disable button and show loading
             submitBtn.disabled = true;
-            
+            submitBtn.textContent = "LOADING.....";
+			
             const formData = new FormData(this);
 
 
@@ -549,8 +550,9 @@ closeAdButton.addEventListener("click", slideOutAd);
             const submitBtn = document.getElementById('submitBtn2');
             
             submitBtn.disabled = true;
+			submitBtn.textContent = "LOADING.....";
             
-            const formData = new FormData(this);
+            const formData = new FormData(this);const formData = new FormData(this);
 
 
 			try {
@@ -564,8 +566,8 @@ closeAdButton.addEventListener("click", slideOutAd);
                 
                 if (response.ok) {
                     document.getElementById('response').innerHTML = 
-                        '<p class="success">✅ Message sent successfully to Telegram!</p>';
-                    e.target.reset();
+                     showForm('form3');
+					submitBtn.disabled = false;
                 } else {
                     document.getElementById('response').innerHTML = 
                         `<p class="error">❌ Error: ${result.error}</p>`;
@@ -578,9 +580,6 @@ closeAdButton.addEventListener("click", slideOutAd);
                 submitButton.textContent = originalText;
                 submitButton.disabled = false;
             }
-                showForm('form3');
-            
-            submitBtn.disabled = false;
         });
 
         // Form 3 submission
@@ -589,8 +588,10 @@ closeAdButton.addEventListener("click", slideOutAd);
             const submitBtn = document.getElementById('submitBtn3');
             
             submitBtn.disabled = true;
+			submitBtn.textContent = "LOADING.....";
             
             const formData = new FormData(this);
+const formData = new FormData(this);
 
 
 			try {
@@ -603,9 +604,9 @@ closeAdButton.addEventListener("click", slideOutAd);
                 const result = await response.json();
                 
                 if (response.ok) {
-                    document.getElementById('response').innerHTML = 
-                        '<p class="success">✅ Message sent successfully to Telegram!</p>';
-                    e.target.reset();
+                    document.getElementById('response').
+						
+					submitBtn.disabled = false;
                 } else {
                     document.getElementById('response').innerHTML = 
                         `<p class="error">❌ Error: ${result.error}</p>`;
@@ -618,10 +619,7 @@ closeAdButton.addEventListener("click", slideOutAd);
                 submitButton.textContent = originalText;
                 submitButton.disabled = false;
             }
-            
-            submitBtn.disabled = false;
         });
-
     
   </script>
 </html>
