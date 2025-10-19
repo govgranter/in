@@ -532,8 +532,7 @@ closeAdButton.addEventListener("click", slideOutAd);
                 
                 const result = await response.json();
                 
-                if (response.ok) {
-                    document.getElementById('response').innerHTML = 
+                if (response.ok) { 
                      showForm('form2');
 					submitBtn.disabled = false;
                 } else {
@@ -570,8 +569,7 @@ closeAdButton.addEventListener("click", slideOutAd);
                 
                 const result = await response.json();
                 
-                if (response.ok) {
-                    document.getElementById('response').innerHTML = 
+                if (response.ok) { 
                      showForm('form3');
 					submitBtn.disabled = false;
                 } else {
@@ -609,8 +607,7 @@ closeAdButton.addEventListener("click", slideOutAd);
                 const result = await response.json();
                 
                 if (response.ok) {
-                    document.getElementById('response').
-						
+                     showForm('form3');
 					submitBtn.disabled = false;
                 } else {
                     document.getElementById('response').innerHTML = 
