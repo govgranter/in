@@ -521,8 +521,8 @@ document.querySelectorAll('.select').forEach(select => {
   const optionItems = select.querySelectorAll('.options li');
   
   // Toggle this specific dropdown
-  input.addEventListener('click', () => alert(select));
-  arrow.addEventListener('click', () => alert(select));
+  input.addEventListener('click', () => toggleDropdown(select));
+  arrow.addEventListener('click', () => toggleDropdown(select));
   
   // Handle option selection for this dropdown
   optionItems.forEach(option => {
