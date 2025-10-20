@@ -543,20 +543,6 @@ document.addEventListener('click', (e) => {
   });
 });
 	  
-	  function toggleDropdown(select) {
-  const options = select.querySelector('.options');
-  const arrow = select.querySelector('.arrow');
-  
-  if (options.style.display === 'block') {
-    hideDropdown(select);
-  } else {
-    // Close all other dropdowns first
-    document.querySelectorAll('.custom-select').forEach(s => {
-      if (s !== select) hideDropdown(s);
-    });
-    showDropdown(select);
-  }
-}
 
 
 	  
