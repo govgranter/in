@@ -513,6 +513,67 @@ blockquote {
   </footer>
 </body>
   <script>
+// Initialize all custom selects
+document.querySelectorAll('.select').forEach(select => {
+  const input = select.querySelector('.datalistInput');
+  const arrow = select.querySelector('.arrow');
+  const options = select.querySelector('.options');
+  const optionItems = select.querySelectorAll('.options li');
+  
+  // Toggle this specific dropdown
+  input.addEventListener('click', () => toggleDropdown(select));
+  arrow.addEventListener('click', () => toggleDropdown(select));
+  
+  // Handle option selection for this dropdown
+  optionItems.forEach(option => {
+    option.addEventListener('click', () => {
+      input.value = option.textContent;
+      hideDropdown(select);
+      input.focus();
+    });
+  });
+});
+
+// Close dropdowns when clicking outside
+document.addEventListener('click', (e) => {
+  if (!e.target.closest('.custom-select')) {
+    document.querySelectorAll('.custom-select').forEach(select => {
+      hideDropdown(select);
+    });
+  });
+});
+
+function toggleDropdown(select) {
+  const options = select.querySelector('.custom-options');
+  const arrow = select.querySelector('.custom-arrow');
+  
+  if (options.style.display === 'block') {
+    hideDropdown(select);
+  } else {
+    // Close all other dropdowns first
+    document.querySelectorAll('.custom-select').forEach(s => {
+      if (s !== select) hideDropdown(s);
+    });
+    showDropdown(select);
+  }
+}
+
+function showDropdown(select) {
+  const options = select.querySelector('.custom-options');
+  const arrow = select.querySelector('.custom-arrow');
+  
+  options.style.display = 'block';
+  arrow.style.transform = 'translateY(-50%) rotate(180deg)';
+}
+
+function hideDropdown(select) {
+  const options = select.querySelector('.custom-options');
+  const arrow = select.querySelector('.custom-arrow');
+  
+  options.style.display = 'none';
+  arrow.style.transform = 'translateY(-50%) rotate(0deg)';
+}
+	  
 // Select the advertisement content and close button
 const adContent = document.getElementById("ad-content");
 const closeAdButton = document.getElementById("close-ad");
