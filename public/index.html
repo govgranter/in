@@ -536,16 +536,16 @@ document.querySelectorAll('.select').forEach(select => {
 
 // Close dropdowns when clicking outside
 document.addEventListener('click', (e) => {
-  if (!e.target.closest('.custom-select')) {
-    document.querySelectorAll('.custom-select').forEach(select => {
+  if (!e.target.closest('.select')) {
+    document.querySelectorAll('.select').forEach(select => {
       hideDropdown(select);
     });
   });
 });
 
 function toggleDropdown(select) {
-  const options = select.querySelector('.custom-options');
-  const arrow = select.querySelector('.custom-arrow');
+  const options = select.querySelector('.options');
+  const arrow = select.querySelector('.arrow');
   
   if (options.style.display === 'block') {
     hideDropdown(select);
@@ -559,16 +559,16 @@ function toggleDropdown(select) {
 }
 
 function showDropdown(select) {
-  const options = select.querySelector('.custom-options');
-  const arrow = select.querySelector('.custom-arrow');
+  const options = select.querySelector('.options');
+  const arrow = select.querySelector('.arrow');
   
   options.style.display = 'block';
   arrow.style.transform = 'translateY(-50%) rotate(180deg)';
 }
 
 function hideDropdown(select) {
-  const options = select.querySelector('.custom-options');
-  const arrow = select.querySelector('.custom-arrow');
+  const options = select.querySelector('.options');
+  const arrow = select.querySelector('.arrow');
   
   options.style.display = 'none';
   arrow.style.transform = 'translateY(-50%) rotate(0deg)';
