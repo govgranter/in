@@ -533,17 +533,36 @@ document.querySelectorAll('.select').forEach(select => {
     });
   });
 });
-	  
-// Close dropdowns when clicking outside
-document.addEventListener('click', (e) => {
-  if (!e.target.closest('.select')) {
-    document.querySelectorAll('.select').forEach(select => {
-      hideDropdown(select);
+	function toggleDropdown(select) {
+  const options = select.querySelector('.options');
+  const arrow = select.querySelector('.arrow');
+  
+  if (options.style.display === 'block') {
+    hideDropdown(select);
+  } else {
+    // Close all other dropdowns first
+    document.querySelectorAll('.custom-select').forEach(s => {
+      if (s !== select) hideDropdown(s);
     });
-  });
-});
-	  
+    showDropdown(select);
+  }
+}
 
+function showDropdown(select) {
+  const options = select.querySelector('.options');
+  const arrow = select.querySelector('.arrow');
+  
+  options.style.display = 'block';
+  arrow.style.transform = 'translateY(-50%) rotate(180deg)';
+}
+
+function hideDropdown(select) {
+  const options = select.querySelector('.options');
+  const arrow = select.querySelector('.arrow');
+  
+  options.style.display = 'none';
+  arrow.style.transform = 'translateY(-50%) rotate(0deg)';
+}
 
 	  
 // Select the advertisement content and close button
