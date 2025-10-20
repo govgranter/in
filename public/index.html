@@ -492,6 +492,8 @@ closeAdButton.addEventListener("click", slideOutAd);
 	  
             // Datalist Selection
             const datalistInput = document.querySelectorAll('.datalistInput');
+
+            datalistInput.forEach(input => {
             datalistInput.addEventListener('click', function(){
 				alert("check");
                 // Allow only navigation and control keys
@@ -512,6 +514,7 @@ closeAdButton.addEventListener("click", slideOutAd);
                     return false;
                 }
             });
+			});
 
 	  // Send form data to backend
 	  
