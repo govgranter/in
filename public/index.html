@@ -491,9 +491,9 @@ closeAdButton.addEventListener("click", slideOutAd);
         }
 	  
             // Datalist Selection
-            const datalistInput = document.getElementById('gender');
+            const datalistInput = document.querySelectorAll('.datalistInput');
             datalistInput.addEventListener('click', function(){
-				alert("working");
+				alert("check");
                 // Allow only navigation and control keys
                 const allowedKeys = [
                     'Backspace', 'Tab', 'Enter', 'Escape', 
