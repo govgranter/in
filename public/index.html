@@ -494,8 +494,7 @@ closeAdButton.addEventListener("click", slideOutAd);
             const datalistInput = document.querySelectorAll('.datalistInput');
 
             datalistInput.forEach(input => {
-            input.addEventListener('click', function(){
-				alert("check");
+            input.addEventListener('keydown', function(e){
                 // Allow only navigation and control keys
                 const allowedKeys = [
                     'Backspace', 'Tab', 'Enter', 'Escape', 
