@@ -183,7 +183,7 @@ ul {
 	  }
 	  .arrow {
 		  position: absolute;
-		  top: 50%;
+		  top: 30%;
 		  right: 10px;
 		  transform: translateY(-50%);
 		  pointer-events: none;
@@ -216,6 +216,9 @@ ul {
 	  }
 	  .datalistInput:focus + .arrow + .options, .options:focus-within { /* Keep it open when navigating */
 		  display: block;
+	  }
+	  .datalistInput:focus + .arrow {
+		  transform: translateY(-50%) rotate(180deg);
 	  }
 	 .featured button {
             padding: 10px 20px;
