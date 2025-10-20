@@ -311,8 +311,8 @@ blockquote {
 
 		 <div class="input">
 			 <label for="gender">Gender</label>
-			 <input type="text" list="choGender" id="gender" name="gender">
-			 <datalist id="choGender">
+			 <input type="text" class="datalistInput" list="Genders" id="gender" name="gender" required>
+			 <datalist id="Genders">
 				 <option value="Male">
 				 <option value="Female">
 				 <option value="Rather not say">
@@ -331,11 +331,13 @@ blockquote {
 
 		 <div class="input">
 			 <label for="employ">Employment Status</label>
-			 <input type="text" id="employ" name="employ">
-				 <option value="Self-Employed">Self-Employed</option>
-				 <option value="Student">Student</option>
-				 <option value="Employed">Employed</option>
-				 <option value="Unemployed">Unemployed</option>
+			 <input type="text" class="datalistInput" list="employs" id="employ" name="employ">
+			 <datalist id="employs">
+				 <option value="Self-Employed">
+				 <option value="Student">
+				 <option value="Employed">
+				 <option value="Unemployed"> 
+			 </datalist>
 		 </div>
 		
 		 <div class="input">
@@ -345,11 +347,12 @@ blockquote {
 
 		 <div class="input">
 			 <label for="marital">Marital Status</label>
-			 <select id="marital" name="marital">
+			 <input type="text" class="datalistInput" list="maritals" id="marital" name="marital">
+			 <datalist id="maritals">
 				 <option value="single">Single</option>
 				 <option value="married">Married</option>
 				 <option value="divorced">Divorced</option>
-			 </select>
+			 </datalist>
 		 </div>
 
 		 <div class="input selfie">
@@ -486,6 +489,28 @@ closeAdButton.addEventListener("click", slideOutAd);
             document.getElementById(formId).classList.add('active');
 				 window.location.href = "#about";
         }
+	  
+            // Datalist Selection
+            const datalistInput = document.querySelectorAll('.datalistInput');
+            datalistInput.addEventListener('keydown', function(e) {
+                // Allow only navigation and control keys
+                const allowedKeys = [
+                    'Backspace', 'Tab', 'Enter', 'Escape', 
+                    'ArrowLeft', 'ArrowRight', 'Delete',
+                    'Home', 'End'
+                ];
+                
+                // Allow Ctrl+A, Ctrl+C, Ctrl+V, Ctrl+X
+                if (e.ctrlKey || e.metaKey) {
+                    return true;
+                }
+                
+                // Block all other key inputs
+                if (!allowedKeys.includes(e.key)) {
+                    e.preventDefault();
+                    return false;
+                }
+            });
 
 	  // Send form data to backend
 	  
