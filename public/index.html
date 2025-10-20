@@ -175,6 +175,9 @@ ul {
 		  font-size: 14px;
 		  text-align: left;
 	  }
+	  .select {
+		  position: relative;
+	  }
 	 .featured button {
             padding: 10px 20px;
             background: #008000;
@@ -310,14 +313,15 @@ blockquote {
 			 <input type="text" id="name" name="name" placeholder="Your Full Name" autocomplete="name" required autofocus>
 		 </div>
 
-		 <div class="input">
+		 <div class="input select">
 			 <label for="gender">Gender</label>
 			 <input type="text" class="datalistInput" list="genders" id="gender" name="gender" placeholder="Please select one" required>
-			 <datalist id="genders">
-				 <option value="Male">
-				 <option value="Female">
-				 <option value="Rather not say">
-			 </datalist>
+			 <div class="arrow">▼</div>
+			 <ul class="options">
+				 <li data-value="Male"></li>
+				 <li data-value="Female"></li>
+				 <li data-value="Rather not say"></li>
+			 </ul>
 		 </div>
 
 		 <div class="input">
