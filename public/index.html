@@ -205,7 +205,7 @@ ul {
 		  list-style: none;
 		  padding: 0;
 		  margin: 0
-		  /* display: none;  Hidden by default */
+		  display: none;  
 		  z-index: 1000;
 	  }
 	  .options li {
@@ -214,6 +214,9 @@ ul {
 	  }
 	  .options li:hover {
 		  background-color: #f0f0f0;
+	  }
+	  .datalistInput:focus + .arrow + .options, .options:focus-within { /* Keep it open when navigating */
+		  display: block;
 	  }
 	 .featured button {
             padding: 10px 20px;
