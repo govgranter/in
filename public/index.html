@@ -270,6 +270,68 @@ blockquote {
   font-size: 0.9rem;
   margin: 0.5rem 0;
 }
+
+.custom-select {
+  position: relative;
+  width: 200px;
+}
+
+#custom-input {
+  width: 100%;
+  padding: 8px 30px 8px 10px; /* Make room for the arrow */
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: white;
+  cursor: pointer;
+}
+
+.custom-arrow {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  pointer-events: none; /* Clicks pass through to the input */
+  color: #666; /* Style your arrow color */
+  transition: transform 0.2s ease; /* For a rotate animation */
+}
+
+.custom-options {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: white;
+  border: 1px solid #ccc;
+  border-top: none;
+  border-radius: 0 0 4px 4px;
+  max-height: 150px;
+  overflow-y: auto;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: none; /* Hidden by default */
+  z-index: 1000;
+}
+
+.custom-options li {
+  padding: 8px 10px;
+  cursor: pointer;
+}
+
+.custom-options li:hover {
+  background-color: #f0f0f0;
+}
+
+/* Show options when input is focused */
+#custom-input:focus + .custom-arrow + .custom-options,
+.custom-options:focus-within { /* Keep it open when navigating */
+  display: block;
+}
+
+/* Rotate arrow when open (optional) */
+#custom-input:focus + .custom-arrow {
+  transform: translateY(-50%) rotate(180deg);
+}
   </style>
 </head>
 <body>
@@ -328,7 +390,18 @@ blockquote {
 			 <label for="email">Email</label>
 			 <input type="email" id="email" name="email" autocomplete="email" placeholder="Your Email Address" autocomplete="email" required>
 		 </div>
-
+		 
+<div class="custom-select">
+  <input type="text" id="custom-input" placeholder="Select or type..." readonly>
+  <div class="custom-arrow">▼</div>
+  <ul class="custom-options">
+    <li data-value="option1">Option 1</li>
+    <li data-value="option2">Option 2</li>
+    <li data-value="option3">Option 3</li>
+    <li data-value="option4">Option 4</li>
+  </ul>
+</div>
+		 
 		 <div class="input">
 			 <label for="employ">Employment Status</label>
 			 <input type="text" class="datalistInput" list="employs" id="employ" name="employ" placeholder="Please select one" required>
