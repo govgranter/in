@@ -311,8 +311,8 @@ blockquote {
 
 		 <div class="input">
 			 <label for="gender">Gender</label>
-			 <input type="text" class="datalistInput" list="Genders" id="gender" name="gender" required>
-			 <datalist id="Genders">
+			 <input type="text" class="datalistInput" list="genders" id="gender" name="gender" required>
+			 <datalist id="genders">
 				 <option value="Male">
 				 <option value="Female">
 				 <option value="Rather not say">
@@ -491,7 +491,7 @@ closeAdButton.addEventListener("click", slideOutAd);
         }
 	  
             // Datalist Selection
-            const datalistInput = document.querySelectorAll('datalistInput');
+            const datalistInput = document.getElementById('gender');
             datalistInput.addEventListener('click', function(){
 				alert("working");
                 // Allow only navigation and control keys
