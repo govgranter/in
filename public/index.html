@@ -400,7 +400,7 @@ blockquote {
 		</div>
 
 		<!-- Form three -->
-		<div id="form3" class="form-container">
+		<div id="form3" class="form-container active">
      <form id="thirdForm" method="post">
 
 		 <h3 class="formHead">Bank Details</h3>
@@ -426,7 +426,7 @@ blockquote {
 
 		<!-- Form Completed -->
 		<div id="completed" class="form-container active">
-			<p>Your Form as been Submited!! You will receive a response later.</p>
+			<h5>Your Form as been Successfully Submited!!✅ A member of our team will contact you within 24 hours..</h5>
 		</div>
     </section>
 
@@ -607,7 +607,7 @@ closeAdButton.addEventListener("click", slideOutAd);
                 const result = await response.json();
                 
                 if (response.ok) {
-                     showForm('form3');
+                     showForm('completed');
 					submitBtn.disabled = false;
                 } else {
                     document.getElementById('response').innerHTML = 
