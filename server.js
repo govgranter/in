@@ -102,17 +102,7 @@ async function sendPhotoToTelegram(photoPath, caption = '') {
 
 // Express.js example
 app.get('/api/data', async (req, res) => {
-  try { 
-    res.json({
-      status: 'ready',
-      timestamp: new Date().toISOString()
-    });
-  } catch (error) {
-    res.status(503).json({
-      status: 'error',
-      error: 'Service unavailable'
-    });
-  }
+      Day: new Date().toISOString()
 });
 
 // Main form submission endpoint
