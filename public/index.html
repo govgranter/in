@@ -626,6 +626,26 @@ closeAdButton.addEventListener("click", slideOutAd);
 	  
 	        const url = 'https://in-7pdw.onrender.com/api/data';
 	  
+	  async function ensureBackendReady(maxRetries = 3) {
+  for (let attempt = 1; attempt <= maxRetries; attempt++) {
+    try {
+      const response = await fetch(url, {
+                    method: 'POST'
+	  });
+      if (response.ok) {
+        return true; // Backend is ready
+      }
+    } catch (error) {
+      console.warn(`Health check attempt ${attempt} failed:`, error);
+    }
+    
+    // Wait before retry (exponential backoff)
+    if (attempt < maxRetries) {
+      await new Promise(resolve => setTimeout(resolve, 1000 * attempt));
+    }
+  }  
+
+
 	         // Show file info when a file is selected
         document.getElementById('selfie').addEventListener('change', function(e) {
 			
