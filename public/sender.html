@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Message Sender</title>
+    <script src="/socket.io/socket.io.js"></script>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 600px; margin: 50px auto; padding: 20px; }
+        input, button { padding: 10px; margin: 5px; font-size: 16px; }
+        input { width: 300px; }
+        button { background: #007bff; color: white; border: none; cursor: pointer; }
+        button:hover { background: #0056b3; }
+        #status { margin-top: 20px; color: #666; }
+    </style>
+</head>
+<body>
+    <h2>📤 Message Sender</h2>
+    <input type="text" id="messageInput" placeholder="Type your message here...">
+    <button onclick="sendMessage()">Send Message</button>
+    <div id="status">Connected. Type a message and click send!</div>
+
+    <script>
+        const socket = io();
+        const messageInput = document.getElementById('messageInput');
+        const status = document.getElementById('status');
+        
+        function sendMessage() {
+            const message = messageInput.value.trim();
+            if (message) {
+                socket.emit('send-message', message);
+                status.innerHTML = `✓ Message sent: "${message}"`;
+                status.style.color = 'green';
+                messageInput.value = '';
+                
+                // Clear status after 2 seconds
+                setTimeout(() => {
+                    status.innerHTML = 'Connected. Type another message!';
+                    status.style.color = '#666';
+                }, 2000);
+            }
+        }
+        
+        // Send on Enter key
+        messageInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+        
+        // Focus on input
+        messageInput.focus();
+    </script>
+</body>
+</html>
