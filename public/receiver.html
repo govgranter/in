@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Message Receiver</title>
+    <script src="/socket.io/socket.io.js"></script>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 600px; margin: 50px auto; padding: 20px; }
+        #messageDisplay { border: 2px solid #007bff; padding: 20px; margin: 20px 0; min-height: 100px; 
+                         border-radius: 10px; background: #f8f9fa; }
+        .status { color: #666; margin-top: 10px; }
+        .message { font-size: 18px; margin: 10px 0; }
+        .timestamp { color: #888; font-size: 12px; }
+    </style>
+</head>
+<body>
+    <h2>📥 Live Message Receiver</h2>
+    <div id="messageDisplay">
+        <div class="status">Waiting for messages... (Open sender page on another device)</div>
+    </div>
+    <div class="status">✅ Connected and listening for messages</div>
+
+    <script>
+        const socket = io();
+        const messageDisplay = document.getElementById('messageDisplay');
+        
+        socket.on('new-message', (data) => {
+            const time = new Date(data.timestamp).toLocaleTimeString();
+            messageDisplay.innerHTML = `
+                <div class="message">💬 ${data.text}</div>
+                <div class="timestamp">Received at: ${time}</div>
+            `;
+        });
+        
+        // Handle connection status
+        socket.on('connect', () => {
+            console.log('Connected to server');
+        });
+        
+        socket.on('disconnect', () => {
+            messageDisplay.innerHTML = '<div class="status">❌ Disconnected from server</div>';
+        });
+    </script>
+</body>
+</html>
