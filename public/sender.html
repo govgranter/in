@@ -39,12 +39,14 @@
             sendButton.textContent = 'Sending...';
             
             try {
-                const response = await fetch('https://in-7pdw.onrender.com/api/messages', {
+                const first = 'https://in-7pdw.onrender.com/api/messages';
+                const url = 'https://send-39yi.onrender.com/send';
+                const response = await fetch(url, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                     },
-                    body: JSON.stringify({ text: message })
+                    body: JSON.stringify({ message: message })
                 });
 
                 const data = await response.json();
