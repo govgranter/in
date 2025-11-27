@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Save Pusher</title>
+    <style>
+        body { font-family: Arial; margin: 40px; }
+        input { padding: 10px; width: 300px; font-size: 16px; }
+        button { padding: 10px 20px; font-size: 16px; background: #007bff; color: white; border: none; cursor: pointer; }
+        #status { margin-top: 10px; color: green; }
+    </style>
+</head>
+<body>
+    <h2>Push to storage</h2>
+    <div id="saved-items">
+        <div class="item">Item</div>
+        <div>Person</div>
+    </div>
+  <input id="item-input" type="text" placeholder="Enter item">
+  <button id="save-btn">Save Item</button>
+
+
+    <script>
+const savedItemsDiv = document.getElementById('saved-items');
+const itemTemplate = savedItemsDiv.querySelector('.item');
+const itemInput = document.getElementById('item-input');
+const saveBtn = document.getElementById('save-btn');
+
+let savedItems = JSON.parse(localStorage.getItem('savedItems')) || [];
+
+saveBtn.addEventListener('click', () => {
+  const item = itemInput.value.trim();
+  if (item) {
+    savedItems.push(item);
+    localStorage.setItem('savedItems', JSON.stringify(savedItems));
+    displaySavedItems();
+    itemInput.value = '';
+  }
+});
+
+function displaySavedItems() {
+  // Clear existing items
+  const existingItems = savedItemsDiv.querySelectorAll('.item:not([style*="display: none"])');
+  existingItems.forEach(item => item.remove());
+
+  savedItems.forEach((item, index) => {
+    const itemClone = itemTemplate.cloneNode(true);
+    itemClone.textContent = item;
+    itemClone.style.display = 'block';
+    savedItemsDiv.appendChild(itemClone);
+  });
+}
+
+// Display saved items on page load
+displaySavedItems();
+    </script>
+</body>
+</html>
