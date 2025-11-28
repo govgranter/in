@@ -84,12 +84,6 @@ app.get('/api/messages', (req, res) => {
     }
 });
 
-// Alternative: Simple polling endpoint
-app.get('/api/messages/poll', (req, res) => {
-    const lastMessageId = req.query.lastMessageId || '0';
-    const newMessages = messages.filter(msg => msg.id > lastMessageId);
-    res.json(newMessages);
-});
 
 // Get all messages (for initial load)
 app.get('/api/messages/all', (req, res) => {
