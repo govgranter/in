@@ -109,8 +109,8 @@
         // Start polling when page loads
         window.addEventListener('load', () => {
             // Choose one method:
-            fetchMessages(); // Long-polling (more efficient)
-            // setInterval(pollMessages, 1000); // Simple polling (every second)
+            //fetchMessages(); // Long-polling (more efficient)
+             setInterval(pollMessages, 1000); // Simple polling (every second)
         });
     </script>
 </body>
