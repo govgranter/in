@@ -55,7 +55,7 @@
                 const messageElement = document.createElement('div');
                 messageElement.className = 'message';
                 messageElement.innerHTML = `
-                    💬 ${message.text}
+                 ${lastMessageId} ${message.text}
                     <div class="timestamp">Received at: ${time}</div>
                 `;
                 messageDisplay.appendChild(messageElement);
