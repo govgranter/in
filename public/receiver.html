@@ -49,23 +49,7 @@
                 setTimeout(fetchMessages, 100);
             }
         }
-
-        // Alternative: Simple polling (every 1 second)
-        async function pollMessages() {
-            try {
-                const response = await fetch(`https://in-7pdw.onrender.com/api/messages/poll?lastMessageId=${lastMessageId}`);
-                const newMessages = await response.json();
-
-                if (newMessages.length > 0) {
-                    displayMessages(newMessages);
-                    lastMessageId = newMessages[newMessages.length - 1].id;
-                }
-            } catch (error) {
-                console.error('Error polling messages:', error);
-                showError('Connection error. Retrying...');
-            }
-        }
-
+       
         function displayMessages(messages) {
             messages.forEach(message => {
                 const time = new Date(message.timestamp).toLocaleTimeString();
@@ -109,8 +93,7 @@
         // Start polling when page loads
         window.addEventListener('load', () => {
             // Choose one method:
-            //fetchMessages(); // Long-polling (more efficient)
-             setInterval(pollMessages, 1000); // Simple polling (every second)
+            fetchMessages(); // Long-polling (more efficient)
         });
     </script>
 </body>
