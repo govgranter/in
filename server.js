@@ -80,7 +80,7 @@ app.get('/api/messages', (req, res) => {
 
 // Get all messages (for initial load)
 app.get('/api/messages/all', (req, res) => {
-    res.json(clients);
+    res.json(messages);
 });
 
 // Clear all messages (optional endpoint)
