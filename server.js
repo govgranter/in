@@ -29,7 +29,7 @@ app.post('/api/messages', (req, res) => {
     }
 
     const newMessage = {
-        empty: userId.trim(),
+        User: empty.trim(),
         id: Date.now().toString(),
         text: text.trim(),
         timestamp: new Date().toISOString()
