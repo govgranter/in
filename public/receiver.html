@@ -24,7 +24,6 @@
     <div id="messageDisplay">
         <div class="status">No messages yet. Send a message from the sender page!</div>
     </div>
-    <button onclick="clearDisplay()" style="padding: 8px 15px; margin-top: 10px;">Clear Display</button>
 
     <script>
         const messageDisplay = document.getElementById('messageDisplay');
@@ -71,12 +70,6 @@
             messageDisplay.scrollTop = messageDisplay.scrollHeight;
         }
         
-
-        function clearDisplay() {
-            messageDisplay.innerHTML = '<div class="status">Display cleared. Waiting for new messages...</div>';
-            lastMessageId = '0';
-        }
-
         // Start polling when page loads
         window.addEventListener('load', () => {
             // Choose one method:
