@@ -25,17 +25,27 @@ const MESSAGES_FILE = path.join(__dirname, 'messages.json');
 let messages = [];
 let clients = [];
 
+async function loadMessages() {
     try {
-        if (fs.readFile(MESSAGES_FILE)) {
-        const data = fs.readFile(MESSAGES_FILE, 'utf8');
-            messages = JSON.parse(data);
-        console.log(`Loaded ${messages.length} previous messages`);
-        }
+        const data = await fs.readFile(MESSAGES_FILE, 'utf8');
+        messages = JSON.parse(data);
+        console.log(`Loaded ${messages.length} messages from file`);
     } catch (error) {
-        console.log('Starting with empty messages');
+        console.log('No existing messages file, starting fresh');
+        messages = [];
     }
+}
 
-app.post('/api/messages', (req, res) => {
+async function saveMessages() {
+    try {
+        await fs.writeFile(MESSAGES_FILE, JSON.stringify(messages, null, 2));
+        console.log('Saved');
+    } catch (error) {
+        console.log('Error saving messages:', error);
+    }
+}
+
+app.post('/api/messages', async (req, res) => {
     const { text } = req.body;
     
     const newMessage = {
@@ -44,11 +54,13 @@ app.post('/api/messages', (req, res) => {
         timestamp: new Date().toISOString()
     };
 
+    // Save to memory
     messages.push(newMessage);
     
-    // ADD THIS LINE to save to file:
-    fs.writeFileSync(MESSAGES_FILE, JSON.stringify(messages, null, 2));
+    // Also save to file
+    await saveMessages();
     
+    // Notify waiting clients
     clients.forEach(client => {
         client.res.json([newMessage]);
     });
@@ -57,6 +69,8 @@ app.post('/api/messages', (req, res) => {
     res.json({ success: true, message: newMessage });
 });
 
+// Load messages when server starts
+loadMessages();
 // GET endpoint to retrieve messages (with long-polling)
 app.get('/api/messages', (req, res) => {
     const lastMessageId = req.query.lastMessageId || '0';
