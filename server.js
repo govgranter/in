@@ -46,7 +46,7 @@ app.post('/api/messages', (req, res) => {
 
     messages.push(newMessage);
     
-    // 🔥 ADD THIS LINE to save to file:
+    // ADD THIS LINE to save to file:
     fs.writeFileSync(MESSAGES_FILE, JSON.stringify(messages, null, 2));
     
     clients.forEach(client => {
