@@ -23,6 +23,7 @@ const MESSAGES_FILE = path.join(__dirname, 'messages.json');
 
 // Load messages from file on startup
 let messages = [];
+let clients = [];
 
 async function loadMessages() {
     try {
