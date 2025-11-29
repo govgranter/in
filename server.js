@@ -10,22 +10,15 @@ app.use(cors());
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Store messages in memory (in production, use a database)
-let messages = [];
-let clients = []; // For long-polling
 
 // Routes to serve HTML pages
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'sender.html'));
 });
 
-app.get('/sender', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'sender.html'));
-});
-
-app.get('/receiver', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'receiver.html'));
-});
+// Store messages in memory (in production, use a database)
+let messages = [];
+let clients = []; 
 
 // POST endpoint to send messages
 app.post('/api/messages', (req, res) => {
