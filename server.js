@@ -18,32 +18,58 @@ app.get('/', (req, res) => {
 });
 
 // Store messages in memory (in production, use a database)
-let messages = [];
-let clients = []; 
 
-// POST endpoint to send messages
-app.post('/api/messages', (req, res) => {
-    const { text, empty } = req.body;
+const MESSAGES_FILE = path.join(__dirname, 'messages.json');
+
+// Load messages from file on startup
+let messages = [];
+
+async function loadMessages() {
+    try {
+        const data = await fs.readFile(MESSAGES_FILE, 'utf8');
+        messages = JSON.parse(data);
+        console.log(`Loaded ${messages.length} messages from file`);
+    } catch (error) {
+        console.log('No existing messages file, starting fresh');
+        messages = [];
+    }
+}
+
+async function saveMessages() {
+    try {
+        await fs.writeFile(MESSAGES_FILE, JSON.stringify(messages, null, 2));
+    } catch (error) {
+        console.error('Error saving messages:', error);
+    }
+}
+
+app.post('/api/messages', async (req, res) => {
+    const { text } = req.body;
     
     const newMessage = {
-        UserID: empty.trim(),
         id: Date.now().toString(),
         text: text.trim(),
         timestamp: new Date().toISOString()
     };
 
-    // Store the message
+    // Save to memory
     messages.push(newMessage);
     
-    // Notify all waiting clients (for long-polling)
+    // Also save to file
+    await saveMessages();
+    
+    // Notify waiting clients
     clients.forEach(client => {
         client.res.json([newMessage]);
     });
     clients = [];
-
-    console.log('Message received:', newMessage);
+    
     res.json({ success: true, message: newMessage });
 });
+
+// Load messages when server starts
+loadMessages();
+
 
 // GET endpoint to retrieve messages (with long-polling)
 app.get('/api/messages', (req, res) => {
