@@ -118,6 +118,4 @@ app.delete('/api/messages', (req, res) => {
 
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
-    console.log(`Sender: http://localhost:${PORT}/sender`);
-    console.log(`Receiver: http://localhost:${PORT}/receiver`);
 });
