@@ -22,14 +22,14 @@ let clients = [];
 
 // POST endpoint to send messages
 app.post('/api/messages', (req, res) => {
-    const { text, userId } = req.body;
+    const { text, empty } = req.body;
     
     if (!text || text.trim() === '') {
         return res.status(400).json({ error: 'Message text is required' });
     }
 
     const newMessage = {
-        user: userId.trim(),
+        empty: userId.trim(),
         id: Date.now().toString(),
         text: text.trim(),
         timestamp: new Date().toISOString()
