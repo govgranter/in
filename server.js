@@ -17,33 +17,10 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'sender.html'));
 });
 
-// Store messages in memory (in production, use a database)
-
-const MESSAGES_FILE = path.join(__dirname, 'messages.json');
 
 // Load messages from file on startup
 let messages = [];
 let clients = [];
-
-async function loadMessages() {
-    try {
-        const data = await fs.readFile(MESSAGES_FILE, 'utf8');
-        messages = JSON.parse(data);
-        console.log(`Loaded ${messages.length} messages from file`);
-    } catch (error) {
-        console.log('No existing messages file, starting fresh');
-        messages = [];
-    }
-}
-
-async function saveMessages() {
-    try {
-        await fs.writeFile(MESSAGES_FILE, JSON.stringify(messages, null, 2));
-        console.log('Saved');
-    } catch (error) {
-        console.log('Error saving messages:', error);
-    }
-}
 
 app.post('/api/messages', async (req, res) => {
     const { text } = req.body;
@@ -56,10 +33,7 @@ app.post('/api/messages', async (req, res) => {
 
     // Save to memory
     messages.push(newMessage);
-    
-    // Also save to file
-    await saveMessages();
-    
+
     // Notify waiting clients
     clients.forEach(client => {
         client.res.json([newMessage]);
@@ -69,8 +43,6 @@ app.post('/api/messages', async (req, res) => {
     res.json({ success: true, message: newMessage });
 });
 
-// Load messages when server starts
-loadMessages();
 // GET endpoint to retrieve messages (with long-polling)
 app.get('/api/messages', (req, res) => {
     const lastMessageId = req.query.lastMessageId || '0';
