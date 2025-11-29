@@ -39,8 +39,9 @@ async function loadMessages() {
 async function saveMessages() {
     try {
         await fs.writeFile(MESSAGES_FILE, JSON.stringify(messages, null, 2));
+        console.log('Saved');
     } catch (error) {
-        console.error('Error saving messages:', error);
+        console.log('Error saving messages:', error);
     }
 }
 
