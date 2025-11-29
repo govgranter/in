@@ -28,11 +28,7 @@
 
         async function sendMessage() {
             const message = messageInput.value.trim();
-            
-            if (!message) {
-                showStatus('Please enter a message', 'error');
-                return;
-            }
+     
 
             // Disable button during send
             sendButton.disabled = true;
