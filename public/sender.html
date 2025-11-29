@@ -41,12 +41,15 @@
             try {
                 const first = 'https://in-7pdw.onrender.com/api/messages';
                 const url = 'https://send-39yi.onrender.com/send';
+                const user = "48427NF";
                 const response = await fetch(first, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                     },
-                    body: JSON.stringify({ text: message })
+                    body: JSON.stringify({ text: message,
+                                          userId: user
+                                         })
                 });
 
                 const data = await response.json();
