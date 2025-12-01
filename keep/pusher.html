@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Save Pusher</title>
+    <style>
+        body { font-family: Arial; margin: 40px; }
+        input { padding: 10px; width: 300px; font-size: 16px; }
+        button { padding: 10px 20px; font-size: 16px; background: #007bff; color: white; border: none; cursor: pointer; }
+        #status { margin-top: 10px; color: green; }
+    </style>
+</head>
+<body>
+    <h2>Push to storage</h2>
+    <div id="saved-items">
+        <div class="item">
+            <p class="name"></p>
+            <p class="description"></p>
+            <p class="price"></p>
+        </div>
+    </div>
+  <input id="item-input" type="text" placeholder="Enter item">
+  <button id="save-btn">Save Item</button>
+   <button id="delete-all-btn">Delete Item</button>
+    <div id="find"></div>
+
+
+    <script>
+const savedItemsDiv = document.getElementById('saved-items');
+const itemTemplate = savedItemsDiv.querySelector('.item');
+const itemInput = document.getElementById('item-input');
+const saveBtn = document.getElementById('save-btn');
+
+let savedItems = JSON.parse(localStorage.getItem('savedItems')) || [];
+
+saveBtn.addEventListener('click', () => {
+  const item = itemInput.value.trim();
+  if (item) {
+    savedItems.push({
+        name: item,
+        description: null,
+        price: null
+    });
+    localStorage.setItem('savedItems', JSON.stringify(savedItems));
+    displaySavedItems();
+    itemInput.value = '';
+  }
+});
+
+        
+function displaySavedItems() {
+  // Clear existing items
+  const existingItems = savedItemsDiv.querySelectorAll('.item:not([style*="display: none"])');
+  existingItems.forEach(item => item.remove());
+
+  savedItems.forEach((item, index) => {
+    const itemClone = itemTemplate.cloneNode(true);
+    itemClone.querySelector('.name').textContent = item.name;
+    itemClone.querySelector('.description').textContent = item.name;
+    itemClone.querySelector('.price').textContent = item.price;
+    itemClone.style.display = 'block';
+    savedItemsDiv.appendChild(itemClone);
+  });
+}
+        
+const find = 'Hey';
+const existing = savedItems.find(item => item.name.toLowerCase() === find.toLowerCase());
+const showfind = document.getElementById('find');
+if (existing) {
+  showfind.textContent = `Item with name "${find}" already exists.`;
+} else {
+  showfind.textContent = `Item with name "${find}" does not exist.`;
+}
+        
+function updateItemByName(name, property, value) {
+  const itemIndex = savedItems.findIndex(item => item.name === name);
+  if (itemIndex !== -1) {
+    savedItems[itemIndex][property] = value;
+    localStorage.setItem('savedItems', JSON.stringify(savedItems));
+    displaySavedItems();
+  }
+}
+  updateItemByName('Hey', 'price', '2500');      
+        
+const deleteAllBtn = document.getElementById('delete-all-btn');
+deleteAllBtn.addEventListener('click', deleteAllSavedItems);
+function deleteAllSavedItems() {
+  savedItems = [];
+  localStorage.setItem('savedItems', JSON.stringify(savedItems));
+  displaySavedItems();
+}
+        
+// Display saved items on page load
+displaySavedItems();
+    </script>
+</body>
+</html>
+
+
