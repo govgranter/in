@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=0">
+  <link href="moneybox.jpeg" rel="icon" type="images/png">
+  <meta property="og:title" content="Buy and redeem gift tokens, instant withdraw to account">
+  <link href="../image.jpg" rel="icon" type="images/png">
+	<link rel="manifest" href="../manifest.json">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <meta property="og:discription" content="Starmart">
+  <style>
+  body {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+}
+
+/* Top Ad Styles */
+.top {
+	position: fixed;
+	top: 0;
+	display: flex;
+	background: #fff;
+	margin: 0;
+	justify-content: space-between;
+	box-sizing: border-box;
+	align-items: center;
+	width: 100%;
+  padding: 10px 20px;
+  z-index: 1000;
+  border-bottom: 2px solid #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+.logo p{
+	font-size: 24px;
+	font-family: "Poppins", "Manrope", system-ui, sans-serif;
+  font-weight: 700;     
+  letter-spacing: -0.6px;
+  color: #0066ff;
+	margin: 0;
+}
+.logo i {
+	font-size: 30px;
+	margin-right: 10px;
+}
+.topBtn button{
+	font-size: 14px;
+	background: #fff;
+	color: #0066ff;
+	border: 2px solid #0066ff;
+	padding: 8px 12px;
+	border-radius: 20px;
+}
+/* Header */
+.header {
+  text-align: center;
+  padding: 2rem;
+  background-image: url('starmart.jpeg'); 
+  background-position: bottom; 
+  background-size: cover;
+  border-top: 10px solid black;
+	height: 220px;   
+}
+
+.header h1, .lower h1 {
+  font-size: 3rem;
+  color: #ff6f61;
+  margin: 0;
+  filter: drop-shadow(2px 4px 6px black);
+  opacity: 0;
+}
+
+.header p, .lower p {
+  font-size: 1.2rem;
+  margin: 0.5rem 0;
+  color: #ff6f61;
+  opacity: 0;
+}
+
+/* Content */
+.content {
+  padding: 1.2rem;
+}
+
+section {
+  margin-bottom: 2rem;
+}
+
+h4 {
+  color: #0066ff;
+  margin-bottom: 0.5rem;
+  font-size: 20px;
+}
+
+p, ul, li {
+  font-size: 1rem;
+  margin: 0.5rem 0;
+}
+
+ul {
+  list-style-type: disc;
+  padding-left: 1rem;
+}
+
+.form-container {
+    margin: 20px 0px;
+    padding: 5px 15px 40px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.15);
+    border-radius: 5px;
+	text-align: center;
+}
+.formHead {
+	text-align: center;
+	width: 100%;
+	font-size: 24px;
+	font-family: "Poppins", "Manrope", system-ui, sans-serif;
+	font-weight: 600;     
+	letter-spacing: -0.6px;
+}
+.input {
+	margin: 15px auto;
+}
+#response {
+	margin-bottom: 5px;
+	color: red;
+}
+.featured button {
+    padding: 10px 20px;
+    background: #0066ff;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+	width: 100%;
+	margin: auto;
+    font-size: 16px;
+}
+button:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+}
+
+.featured input {
+	background-color: transparent;
+	color: #000;
+    font-size: 20px;
+    border: 1px solid #000;
+	width: 100%;
+	box-sizing: border-box;
+	padding: 8px 12px;
+	outline: none;
+}
+.buy{
+	text-align: center;
+}
+.buy button{
+	font-size: 14px;
+	background: #fff;
+	color: #0066ff;
+	border: 2px solid #0066ff;
+	padding: 8px 12px;
+	border-radius: 20px;
+}
+
+/* About */
+#about{
+	padding-top: 30px;
+}
+.about h2{
+	margin: 0;
+}
+	  
+/* Reviews */	  
+blockquote {
+  font-style: italic;
+  padding-left: 1.2rem;
+  border-left: 4px solid #0066ff;
+  margin: 5px 0;
+}
+/* Reviews */	  
+.lower {
+  text-align: center;
+  padding: 2rem;
+  background-image: url('starmartb.jpeg'); 
+  background-size: 100% 100%; 
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* Footer */
+.footer {
+  text-align: center;
+  padding: 1rem;
+  color: #fff;
+  background-color: #ccc;
+}
+
+.footer p {
+  font-size: 0.9rem;
+  margin: 0.5rem 0;
+}
+
+  </style>
+</head>
+<body>
+<!-- Top Page Advertisement -->
+  <div class="top">
+    <div class="logo">
+      <p><i class="fa fa-balance-scale" aria-hidden="true"></i><strong>Starmart</strong></p>
+	</div>
+	<div class="topBtn">
+		<button id="redeemBtn">Redeem Token</button>
+	</div>
+  </div>
+
+  <!-- Header Section -->
+  <header class="header">
+    <h1>Starmart</h1>
+    <p>Gift Token Like No Other</p>
+  </header>
+
+  <!-- Main Content -->
+  <main class="content">
+    <!-- Form Part -->
+    <section class="featured" id="featured">
+	<div id="form" class="form-container">
+     <form id="codeForm" method="post">
+
+		 <h3 class="formHead">REDEEM TOKEN</h3>
+		 
+		 <div class="input">
+			 <input type="tel" id="codeInput" name="phone" placeholder="Input Code" maxlength="19" required>
+		 </div>
+		 
+		 <div id="response"></div>
+		 
+		 <button type="submit" id="submitBtn">REDEEM</button>
+	 </form>
+	</div>
+    </section>
+	  
+    <!-- About Starmart -->
+    <section class="about" id="about">
+      <h2>Starmart Token</h2>
+      <p>Transfer across the globe, 100% on-chain, fully audited, and instantly delivered. No tricks, no waiting periods. Redeem your tokens, connect your wallet or account, and own them in seconds. This is how token exchange was always meant to be. <br>Hit “Redeem”, add account for payment and watch them instantly appear in your balance. It takes less than 10 Mins, thousands are claiming every hour. Don’t wait, secure what’s rightfully yours!</p>
+    </section>
+
+	<!-- BUY -->
+    <section class="buy">
+      <button onclick="window.location.href='buy.html'">BUY TOKEN</button>
+    </section> 
+
+    <!-- Customer Reviews -->
+    <section class="reviews" id="reviews">
+      <h4>Administration</h4>
+      <blockquote>Starmart is one of the most extensive token shopping rewards programs on the internet. Find coupons, promo codes, deals, and cash back offers to your favorite stores. Combine with your preferred account to earn additional cash back.</blockquote>
+      <blockquote>Buy and redeem gift token easily. Instant payment, very small transaction fee and top notch reliability. No hidden fees or surprise charges, less than 10 Mins transaction time. Join now and lock in your spot in the community</blockquote>
+	</section>
+
+	<!-- About Starmart -->
+	<section class="about">
+      <h2>Fast & Best</h2>
+      <p>The tokens you’re about to buy/redeem aren’t just numbers, they’re your early ticket to the future we’re building together. Every great journey starts with a single step. Take yours right now and join the community that’s changing everything.<br>Over 47,321 users redeemed tokens every 24 hours! The leaderboard is always heating up and top 500 redeemers every week unlocks bonus airdrops. Your tokens are waiting, get yours before someone else grabs the spot you deserve!</p>
+	</section>
+	  
+	<!-- BUY -->
+    <section class="buy">
+      <button onclick="window.location.href='buy.html'">BUY TOKEN</button>
+    </section>
+	  
+    <!-- Contact and Inquiries -->
+    <section class="contact" id="contact">
+      <h4>Contact and Inquiries</h4>
+      <p>If you have any questions about the payout or need assistance, please reach out to us:</p>
+      <ul>
+        <li>Email: <a href="mailto:info@govgrant.com">info@govgrant.com</a></li>
+        <li>Phone: (807) 420‑1498</li>
+        <li>Contact us for any for updates!</li>
+      </ul>
+    </section>
+  </main>
+
+	<!-- Header Section -->
+  <header class="lower">
+    <h1>Starmart</h1>
+    <p>Gift Token Like No Other</p>
+  </header>
+	
+  <!-- Footer -->
+  <footer class="footer">
+    <p>&copy; 2005 Starmart. All rights reserved.</p>
+	  <small>Starmart®-related trademarks including “Starmart®”, “Token Codes®”, “Starmartakes®”, “StarButton”, “Starup”, “SM” and the Starmart logo are the property of Starmart, LLC; all rights reserved. Other trademarks appearing on this site are property of their respective owners, which do not endorse and are not affiliated with Starmart or its promotions.</small>
+  </footer>
+	<script src="../sw.js"></script>
+</body>
+	<script>
+		const codeInput = document.getElementById('codeInput');
+
+codeInput.addEventListener('input', (e) => {
+  let value = e.target.value.replace(/\s/g, ''); // remove existing spaces
+  if (value.length > 16) {
+    value = value.slice(0, 16); // limit to 16 digits
+  }
+  const formattedValue = value.match(/.{1,4}/g).join(' '); // add spaces every 4 digits
+  e.target.value = formattedValue;
+});
+		// Jump to input on click
+		document.getElementById('redeemBtn').addEventListener('click', () => {
+			codeInput.focus();
+			document.getElementById('form').scrollIntoView({ behavior: 'smooth' });
+});
+		// Form l submission
+        document.getElementById('codeForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+			
+			const code = codeInput.value.trim();
+			const expectedCode = '4303 2857 7503 7138';
+			const usedCode = '2693 3924 3825 6328';
+
+  
+			if (code === expectedCode) { 
+				const submitBtn = document.getElementById('submitBtn');
+				submitBtn.textContent = 'LOADING.....';
+				setTimeout(() => {
+					submitBtn.textContent = 'REDEEM';
+					window.location.href = 'redeem.html';
+				}, 3000);
+			} else if (code === usedCode) {
+				const response = document.getElementById('response');
+				response.style.color = '#999900';
+				response.textContent = 'Card has already been used. Try another.';
+				submitBtn.disabled = true;
+				setTimeout(() => {
+					response.textContent = '';
+					submitBtn.disabled = false;
+				}, 3000);
+			}else {
+				response.style.color = 'red';
+				response.textContent = 'Invalid code. Please enter a valid code.';
+				submitBtn.disabled = true;
+				setTimeout(() => {
+					response.textContent = '';
+					submitBtn.disabled = false;
+				}, 3000);
+			}
+		});
+	</script>
+</html>
+  
+  
