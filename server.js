@@ -86,9 +86,6 @@ async function sendPhotoToTelegram(chatID, photoPath, caption = '') {
             }
         );
         
-        // Clean up the uploaded file
-        fs.unlinkSync(photoPath);
-        
         return response.data;
     } catch (error) {
         console.error('Error sending photo to Telegram:', error.message);
