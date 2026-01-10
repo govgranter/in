@@ -46,8 +46,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // Telegram Bot Configuration
 const TELEGRAM_BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
-const savedID = process.env.TELEGRAM_CHAT_ID;
-const TELEGRAM_CHAT_ID = [savedID];
+const TELEGRAM_CHAT_ID = process.env.TELEGRAM_CHAT_ID;
 
 // Function to send text message to Telegram
 async function sendTextToTelegram(text) {
